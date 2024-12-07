@@ -11,15 +11,16 @@ html {
 }
 
 body {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  font-size: var(--font-size-p);
-  font-family: "Inter", sans-serif;
-  color: rgb(19, 19, 19);
+  max-width: 1440px;
   padding: 0 var(--spacing-10);
   margin: 0 auto;
-  max-width: 1440px;
+  font-size: var(--font-size-p);
+  font-family: "Inter", sans-serif;
+  color: var(--dark-color);
 
   @media (max-width: 1024px) {
     padding: 0 var(-spacing-6);
@@ -58,6 +59,8 @@ a {
 }
 
 .container {
+  flex: 1;
+  height: 100%;
   padding-top: 16rem;
   margin: 0 auto var(--spacing-10) auto;
 
