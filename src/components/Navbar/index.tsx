@@ -1,16 +1,14 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import styles from "./style.module.css";
-import { navLinks } from "../../../constants";
+import { navLinks } from "../../constants";
+import Button from "../Button";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
     setIsMenuOpen((prevState) => !prevState);
-  };
-
-  const handleLinkClick = () => {
-    setIsMenuOpen(false);
   };
 
   return (
@@ -27,22 +25,29 @@ const Navbar = () => {
           <img src="/menu.svg" alt="Menu-icon" />
         </button>
       </div>
-      <ul
-        className={`${styles.navLinks} ${
+
+      <div
+        className={` ${styles.rightContainer} ${
           isMenuOpen ? styles.show : styles.hide
         }`}
-        role="menu"
       >
-        {Array.isArray(navLinks) &&
-          navLinks.length > 0 &&
-          navLinks.map((link) => (
-            <li key={link.id} role="menuitem">
-              <a href={link.href} onClick={handleLinkClick}>
-                {link.text}
-              </a>
-            </li>
-          ))}
-      </ul>
+        <ul className={styles.navLinks} role="menu">
+          {Array.isArray(navLinks) &&
+            navLinks.map((link) => (
+              <li key={link.id} role="menuitem">
+                <NavLink
+                  to={link.path}
+                  className={({ isActive }) =>
+                    isActive ? styles.activeLink : ""
+                  }
+                >
+                  {link.text}
+                </NavLink>
+              </li>
+            ))}
+        </ul>
+        <Button>Log in</Button>
+      </div>
     </nav>
   );
 };

@@ -11,9 +11,11 @@ html {
 }
 
 body {
-  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: var(--font-size-p);
   font-family: "Inter", sans-serif;
-  min-height: 100vh;
   color: rgb(19, 19, 19);
   padding: 0 var(--spacing-10);
   margin: 0 auto;
@@ -29,37 +31,38 @@ body {
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: var(--font-size-h1);
   font-weight: 700;
   color: var(--primary-color);
   font-family: Georgia, "Times New Roman", Times, serif;
   margin-bottom: var(--spacing-1);
-
-  @media (max-width: 1024px) {
-    font-size: 4rem;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 3.6rem;
-  }
 }
 
 h2 {
-  font-size: 3.5rem;
+  font-size: var(--font-size-h2);
   font-weight: 500;
   font-family: Georgia, "Times New Roman", Times, serif;
   margin-bottom: var(--spacing-1);
+}
 
-  @media (max-width: 1024px) {
-    font-size: 3rem;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 2.6rem;
-  }
+h3 {
+  font-size: var(--font-size-h3);
+  font-weight: 500;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin-bottom: var(--spacing-1);
 }
 
 a {
   text-decoration: none;
   color: var(--secondary-color);
+}
+
+.container {
+  padding-top: 16rem;
+  margin: 0 auto var(--spacing-10) auto;
+
+  @media (max-width: 768px) {
+    padding-top: 12rem;
+    margin: 0 auto var(--spacing-10) auto;
+  }
 }
