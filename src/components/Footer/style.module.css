@@ -1,14 +1,9 @@
 .footer {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  z-index: 100;
-  transform: translateX(-50%);
   width: 100%;
   text-align: left;
   border-top: 1px solid var(--light-grey);
   padding: var(--spacing-2) var(--spacing-10);
-
+  margin-top: auto;
   @media (max-width: 1024px) {
     padding: var(--spacing-2) var(-spacing-6);
   }

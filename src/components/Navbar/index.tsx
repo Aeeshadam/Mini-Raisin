@@ -11,6 +11,10 @@ const Navbar = () => {
     setIsMenuOpen((prevState) => !prevState);
   };
 
+  const handleNavLinkClick = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <nav className={styles.nav}>
       <div className={styles.logoAndMenuContainer}>
@@ -36,6 +40,7 @@ const Navbar = () => {
             navLinks.map((link) => (
               <li key={link.id} role="menuitem">
                 <NavLink
+                  onClick={handleNavLinkClick}
                   to={link.path}
                   className={({ isActive }) =>
                     isActive ? styles.activeLink : ""
@@ -46,7 +51,7 @@ const Navbar = () => {
               </li>
             ))}
         </ul>
-        <Button>Log in</Button>
+        <Button to="/login">Log in</Button>
       </div>
     </nav>
   );

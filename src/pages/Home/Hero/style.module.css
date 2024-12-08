@@ -1,1 +1,52 @@
+.hero {
+  position: absolute;
+  top: 61px;
+  left: 0;
+  width: 100vw;
+  height: 400px;
+  background-image: url("/public/hero.jpg");
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  z-index: -1;
+}
 
+.heroOverlay {
+  position: absolute;
+  top: 61px;
+  left: 0;
+  width: 100vw;
+  height: 400px;
+  background-color: var(--primary-color);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.heroSpacer {
+  height: 400px;
+}
+
+.heroContent {
+  position: absolute;
+  top: 61px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%;
+  margin: 0 auto;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+}
+
+.heroDescription {
+  color: white;
+  margin-bottom: var(--spacing-2);
+}
