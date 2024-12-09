@@ -1,5 +1,6 @@
 .button {
-  padding: 1rem 2rem;
+  display: inline-block;
+  padding: var(--spacing-1) var(--spacing-2);
   background-color: var(--secondary-color);
   color: white;
   border: none;
@@ -11,4 +12,11 @@
 
 .button:hover {
   background-color: var(--primary-color);
+  color: white;
+}
+
+.outlined {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
 }

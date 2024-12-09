@@ -1,5 +1,7 @@
 import React from "react";
 import Hero from "./Hero";
+import OfferTable from "./OfferTable";
+import products from "../../products";
 import styles from "./Hero/style.module.css";
 
 const Home = () => {
@@ -7,6 +9,7 @@ const Home = () => {
     <div>
       <Hero />
       <div className={styles.heroSpacer}></div>
+      <OfferTable products={products} />
     </div>
   );
 };

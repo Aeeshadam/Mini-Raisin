@@ -3,17 +3,18 @@ import { NavLink } from "react-router-dom";
 import styles from "./style.module.css";
 import { ButtonProps } from "../../types";
 
-const Button = ({ children, to, onClick }: ButtonProps) => {
+const Button = ({ children, to, onClick, classname }: ButtonProps) => {
+  const classNames = `${styles.button} ${classname ? styles[classname] : ""}`;
   if (to) {
     return (
-      <NavLink className={styles.button} to={to} aria-label="Go to login page">
+      <NavLink className={classNames} to={to} aria-label="Go to login page">
         {children}
       </NavLink>
     );
   }
 
   return (
-    <button className={styles.button} onClick={onClick}>
+    <button className={classNames} onClick={onClick}>
       {children}
     </button>
   );

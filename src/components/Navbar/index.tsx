@@ -31,7 +31,7 @@ const Navbar = () => {
       </div>
 
       <div
-        className={` ${styles.rightContainer} ${
+        className={`${styles.rightContainer} ${
           isMenuOpen ? styles.show : styles.hide
         }`}
       >
