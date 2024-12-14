@@ -2,6 +2,7 @@ import React from "react";
 import { Product } from "../../../types";
 import styles from "./style.module.css";
 import Button from "../../../components/Button";
+import { formatCurrency, formatPercentage } from "../../../utils";
 
 interface OfferTableProps {
   products: Product[];
@@ -32,7 +33,9 @@ const OfferTable: React.FC<OfferTableProps> = ({ products }) => {
           {products.map((product) => (
             <tr key={product.id}>
               <td data-label="Interest Rate">
-                <h2 className={styles.interest}>{product.interestRate}</h2>
+                <h2 className={styles.interest}>
+                  {formatPercentage(product.interestRate)}
+                </h2>
               </td>
               <td data-label="Product">
                 <div className={styles.logoContainer}>
@@ -45,10 +48,14 @@ const OfferTable: React.FC<OfferTableProps> = ({ products }) => {
                 </div>
               </td>
               <td data-label="Term">{product.term}</td>
-              <td data-label="Min Deposit">{product.minimumDeposit}</td>
-              <td data-label="Max Deposit">{product.maximumDeposit}</td>
+              <td data-label="Min Deposit">
+                {formatCurrency(product.minimumDeposit)}
+              </td>
+              <td data-label="Max Deposit">
+                {formatCurrency(product.maximumDeposit)}
+              </td>
               <td>
-                <Button to="/apply" classname="outlined">
+                <Button to="/apply" className="outlined">
                   Apply
                 </Button>
               </td>

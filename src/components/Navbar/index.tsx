@@ -7,14 +7,8 @@ import Button from "../Button";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleMenuClick = () => {
-    setIsMenuOpen((prevState) => !prevState);
-  };
-
-  const handleNavLinkClick = () => {
-    setIsMenuOpen(false);
-  };
-
+  const handleMenuClick = () => setIsMenuOpen((prevState) => !prevState);
+  const handleNavLinkClick = () => setIsMenuOpen(false);
   return (
     <nav className={styles.nav}>
       <div className={styles.logoAndMenuContainer}>

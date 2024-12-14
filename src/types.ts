@@ -4,16 +4,22 @@ export interface ButtonProps {
   children: ReactNode;
   to?: string;
   onClick?: () => void;
-  classname?: string;
+  className?: string;
 }
 
 export interface Product {
-  id: number;
+  id: string;
   name: string;
-  interestRate: string;
+  interestRate: number;
   term: string;
-  minimumDeposit: string;
-  maximumDeposit: string;
+  minimumDeposit: number;
+  maximumDeposit: number;
   link: string;
   logo: string;
+}
+
+export interface DashboardProduct extends Product {
+  balance: number;
+  startDate: string;
+  closedDate?: string;
 }

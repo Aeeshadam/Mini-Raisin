@@ -1,9 +1,11 @@
 import React from "react";
 import Hero from "./Hero";
 import OfferTable from "./OfferTable";
-import products from "../../products";
+import productData from "../../data/products.json";
+import { Product } from "../../types";
 import styles from "./Hero/style.module.css";
 
+const products: Product[] = productData;
 const Home = () => {
   return (
     <div>
