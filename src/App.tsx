@@ -27,7 +27,7 @@ const App = () => {
             }
           />
           <Route path="/login" element={<Login />} />
-          <Route path="/apply" element={<Apply />} />
+          <Route path="apply/:productId" element={<Apply />} />
         </Routes>
         <Footer />
       </Router>

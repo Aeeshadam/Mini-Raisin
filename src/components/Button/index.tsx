@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import styles from "./style.module.css";
 import { ButtonProps } from "../../types";
 
-const Button = ({ children, to, onClick, className }: ButtonProps) => {
+const Button = ({ children, to, onClick, className, type }: ButtonProps) => {
   const classNames = `${styles.button} ${className ? styles[className] : ""}`;
   if (to) {
     return (
@@ -14,7 +14,7 @@ const Button = ({ children, to, onClick, className }: ButtonProps) => {
   }
 
   return (
-    <button className={classNames} onClick={onClick}>
+    <button className={classNames} onClick={onClick} type={type}>
       {children}
     </button>
   );

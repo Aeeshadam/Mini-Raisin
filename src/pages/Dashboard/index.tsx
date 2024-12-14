@@ -26,7 +26,7 @@ const Dashboard: React.FC<DashboardProps> = ({
   }
 
   return (
-    <main>
+    <main className={styles.dashboard}>
       {hasActiveProducts && (
         <>
           <h2 className={styles.totalBalance}>

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { DashboardProduct } from "../../types";
 import Button from "../Button";
 import styles from "./style.module.css";
-import { formatCurrency, formatPercentage } from "../../utils";
+import { formatCurrency } from "../../utils";
+import ProductDetails from "../ProductDetails.tsx";
 
 interface AccordionProps {
   product: DashboardProduct;
@@ -34,41 +35,7 @@ const Accordion: React.FC<AccordionProps> = ({ product }) => {
         </Button>
       </div>
 
-      {isOpen && (
-        <div className={styles.expanded}>
-          <div>
-            <h4>Term:</h4>
-            <p>{product.term}</p>
-          </div>
-
-          <div>
-            <h4>Interest Rate:</h4>
-            <p>{formatPercentage(product.interestRate)}</p>
-          </div>
-
-          <div>
-            <h4>Minimum Deposit:</h4>
-            <p>{formatCurrency(product.minimumDeposit)}</p>
-          </div>
-
-          <div>
-            <h4>Maximum Deposit:</h4>
-            <p>{formatCurrency(product.maximumDeposit)}</p>
-          </div>
-
-          <div>
-            <h4>Start Date:</h4>
-            <p>{product.startDate}</p>
-          </div>
-
-          {product.closedDate && (
-            <div>
-              <h4>Closed Date:</h4>
-              <p>{product.closedDate}</p>
-            </div>
-          )}
-        </div>
-      )}
+      {isOpen && <ProductDetails product={product} />}
     </article>
   );
 };

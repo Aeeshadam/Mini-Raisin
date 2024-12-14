@@ -5,6 +5,7 @@ export interface ButtonProps {
   to?: string;
   onClick?: () => void;
   className?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 export interface Product {

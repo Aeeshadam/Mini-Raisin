@@ -24,14 +24,6 @@
   height: auto;
 }
 
-.expanded div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--spacing-1) 0;
-  border-top: 1px solid var(--light-grey);
-}
-
 .balance {
   color: var(--primary-color);
   font-weight: 700;

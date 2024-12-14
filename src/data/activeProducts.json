@@ -9,8 +9,7 @@
     "link": "https://example.com/product9",
     "logo": "/images/logo1.jpg",
     "balance": 1000,
-    "startDate": "2021-01-01",
-    "closedDate": "2024-01-01"
+    "startDate": "2021-01-01"
   },
   {
     "id": "AJSA",
@@ -22,7 +21,6 @@
     "link": "https://example.com/product10",
     "logo": "/images/logo1.jpg",
     "balance": 20000,
-    "startDate": "2021-01-01",
-    "closedDate": "2024-01-01"
+    "startDate": "2021-01-01"
   }
 ]

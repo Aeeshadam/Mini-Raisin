@@ -14,15 +14,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  max-width: 1440px;
-  padding: 0 var(--spacing-10);
-  margin: 0 auto;
   font-size: var(--font-size-p);
   font-family: "Inter", sans-serif;
   color: var(--dark-color);
+  padding: 0 var(--spacing-10);
 
   @media (max-width: 1024px) {
-    padding: 0 var(-spacing-6);
+    padding: 0 var(--spacing-6);
   }
 
   @media (max-width: 768px) {
@@ -60,12 +58,13 @@ a {
 .container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
   padding-top: 16rem;
-  margin: 0 auto;
+  width: 100%;
 
   @media (max-width: 768px) {
     padding-top: 12rem;
-    margin: 0 auto;
   }
 }

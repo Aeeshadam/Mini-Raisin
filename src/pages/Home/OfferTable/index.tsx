@@ -55,7 +55,7 @@ const OfferTable: React.FC<OfferTableProps> = ({ products }) => {
                 {formatCurrency(product.maximumDeposit)}
               </td>
               <td>
-                <Button to="/apply" className="outlined">
+                <Button to={`/apply/${product.id}`} className="outlined">
                   Apply
                 </Button>
               </td>

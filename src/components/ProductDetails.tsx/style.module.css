@@ -1,0 +1,8 @@
+.productDetails div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: var(--spacing-1) 0;
+  border-top: 1px solid var(--light-grey);
+}

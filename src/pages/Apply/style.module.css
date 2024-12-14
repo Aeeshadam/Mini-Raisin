@@ -1,0 +1,49 @@
+.apply {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-6);
+
+  @media (max-width: 1024px) {
+    gap: var(--spacing-2);
+  }
+}
+
+.logoAndNameContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.logoAndNameContainer img {
+  width: 50px;
+  height: auto;
+}
+
+.applyForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.applyForm label {
+  display: block;
+}
+
+.applyForm input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid var(--light-grey);
+  border-radius: 4px;
+}
+
+.applyForm input::-webkit-outer-spin-button,
+.applyForm input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
