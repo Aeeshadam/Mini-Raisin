@@ -32,12 +32,20 @@ const Dashboard: React.FC<DashboardProps> = ({
           <h2 className={styles.totalBalance}>
             Total Invested: {formatCurrency(totalInvested)}
           </h2>
-          <ProductSections title="Active Products" products={activeProducts} />
+          <ProductSections
+            title="Active Products"
+            products={activeProducts}
+            isActive={true}
+          />
         </>
       )}
 
       {hasClosedProducts && (
-        <ProductSections title="Closed Deposits" products={closedProducts} />
+        <ProductSections
+          title="Closed Deposits"
+          products={closedProducts}
+          isActive={false}
+        />
       )}
     </main>
   );

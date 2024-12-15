@@ -1,16 +1,22 @@
 import React from "react";
 import "./styles/index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "./store/store";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/LogIn";
 import Apply from "./pages/Apply";
-import activeProductsData from "./data/activeProducts.json";
-import closedProductsData from "./data/closedProducts.json";
 
 const App = () => {
+  const activeProductsData = useSelector(
+    (state: RootState) => state.activeDeposits.activeDeposits
+  );
+  const closedProductsData = useSelector(
+    (state: RootState) => state.closedDeposits.closedDeposits
+  );
   return (
     <div className="container">
       <Router>

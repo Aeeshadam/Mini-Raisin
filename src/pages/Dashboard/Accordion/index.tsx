@@ -1,19 +1,20 @@
 import React, { useState } from "react";
-import { DashboardProduct } from "../../types";
-import Button from "../Button";
+import { DashboardProduct } from "../../../types";
+import Button from "../../../components/Button";
 import styles from "./style.module.css";
-import { formatCurrency } from "../../utils";
-import ProductDetails from "../ProductDetails.tsx";
+import { formatCurrency } from "../../../utils";
+import ProductDetails from "../../../components/ProductDetails.tsx";
+import useCloseDeposit from "../../../hooks/useCloseDeposit";
 
 interface AccordionProps {
   product: DashboardProduct;
+  isActive: boolean;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ product }) => {
+const Accordion: React.FC<AccordionProps> = ({ product, isActive }) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const handleToggleAccordion = () => setIsOpen((prev) => !prev);
-
+  const { handleCloseDeposit } = useCloseDeposit(product);
   if (!product) return null;
 
   return (
@@ -33,6 +34,12 @@ const Accordion: React.FC<AccordionProps> = ({ product }) => {
         <Button onClick={handleToggleAccordion} className="link">
           Details
         </Button>
+
+        {isActive && (
+          <Button className="outlined" onClick={handleCloseDeposit}>
+            Close Deposit
+          </Button>
+        )}
       </div>
 
       {isOpen && <ProductDetails product={product} />}

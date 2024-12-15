@@ -36,6 +36,13 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
         </div>
       )}
 
+      {"interestEarned" in product && (
+        <div>
+          <h4>Interest Earned:</h4>
+          <p>{formatCurrency(product.interestEarned)}</p>
+        </div>
+      )}
+
       {"startDate" in product && (
         <div>
           <h4>Start Date:</h4>
