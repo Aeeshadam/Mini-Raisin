@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { DashboardProduct, Product } from "../types";
 import { setActiveDeposits } from "../store/slices/activeDepositsSlice";
-import { formatNumber } from "../utils";
+import { formatNumber } from "../utils/utils";
 import { useNotification } from "./NotificationContext";
+import { saveDeposit } from "../utils/localStorageUtils";
 
 interface ApplyFormContextProps {
   depositAmount: string;
@@ -85,6 +86,7 @@ export const ApplyFormProvider: React.FC<ApplyFormProviderProps> = ({
     };
 
     dispatch(setActiveDeposits([newDeposit]));
+    saveDeposit("active", newDeposit);
     navigate("/dashboard");
     showNotification("Deposit opened successfully", "success");
   };

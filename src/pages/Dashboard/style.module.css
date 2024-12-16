@@ -3,6 +3,7 @@
   flex-direction: column;
   width: 100%;
   max-width: 800px;
+  margin-bottom: var(--spacing-3);
 }
 
 .sectionHeading {
@@ -15,5 +16,5 @@
 }
 
 .sectionContainer {
-  margin-bottom: var(--spacing-6);
+  margin-bottom: var(--spacing-1);
 }

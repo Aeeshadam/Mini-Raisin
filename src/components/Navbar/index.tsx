@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import styles from "./style.module.css";
 import { useAuth } from "../../contexts/AuthContext";
 import LogInButton from "./LogInButton";
-import { getInitials } from "../../utils";
+import { getInitials } from "../../utils/utils";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,13 +18,14 @@ const Navbar = () => {
         <a className={styles.logo} href="/" aria-label="Logo">
           <img src="/logo.png" alt="Logo" />
         </a>
-        <button
-          className={styles.menuButton}
+
+        <img
+          role="button"
           onClick={handleMenuClick}
-          aria-label="Menu"
-        >
-          ☰
-        </button>
+          className={styles.menuButton}
+          src="/menu.svg"
+          alt="menuButton"
+        />
       </div>
       <div className={`${styles.menu} ${isMenuOpen ? styles.open : ""}`}>
         <NavLink to="/" className={styles.navLink} onClick={handleNavLinkClick}>

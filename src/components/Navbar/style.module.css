@@ -23,17 +23,13 @@
 .menuButton {
   display: none;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .menu {
   display: flex;
   align-items: center;
   gap: var(--spacing-2);
-}
-
-.menu.open {
-  display: flex;
 }
 
 .navLink {
@@ -56,7 +52,7 @@
 
 @media (max-width: 1024px) {
   .nav {
-    padding: var(--spacing-1) var(-spacing-6);
+    padding: var(--spacing-1) var(--spacing-6);
   }
 }
 
@@ -68,13 +64,12 @@
 
   .menuButton {
     display: block;
-    padding: 0.6rem var(--spacing-1);
+    padding: 6px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     background-color: var(--light-grey);
   }
-
   .menu {
     display: none;
     flex-direction: column;

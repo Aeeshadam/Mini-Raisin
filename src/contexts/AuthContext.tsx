@@ -6,10 +6,17 @@ import {
   User,
 } from "firebase/auth";
 import { auth, provider } from "../firebaseConfig";
+import { useDispatch } from "react-redux";
+import {
+  setActiveDeposits,
+  setLoading,
+} from "../store/slices/activeDepositsSlice";
+import { setClosedDeposits } from "../store/slices/closedDepositsSlice";
 import { useNotification } from "./NotificationContext";
-import { log } from "console";
+import { loadDeposits } from "../utils/localStorageUtils";
 
 interface AuthContextProps {
+  authLoading: boolean;
   user: User | null;
   signInWithGoogle: () => Promise<void>;
   signOutUser: () => Promise<void>;
@@ -20,14 +27,25 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const [authLoading, setAuthLoading] = useState(true);
   const [user, setUser] = useState<User | null>(null);
   const { showNotification } = useNotification();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      if (currentUser) {
+        dispatch(setLoading(true));
+        const activeDeposits = loadDeposits("active");
+        const closedDeposits = loadDeposits("closed");
+        dispatch(setActiveDeposits(activeDeposits));
+        dispatch(setClosedDeposits(closedDeposits));
+      }
+      setAuthLoading(false);
     });
     return () => unsubscribe();
-  }, []);
+  }, [dispatch]);
 
   const signInWithGoogle = async () => {
     try {
@@ -50,7 +68,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <AuthContext.Provider value={{ user, signInWithGoogle, signOutUser }}>
+    <AuthContext.Provider
+      value={{ user, authLoading, signInWithGoogle, signOutUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

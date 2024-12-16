@@ -2,7 +2,7 @@ import React from "react";
 import { Product } from "../../../types";
 import styles from "./style.module.css";
 import Button from "../../../components/Button";
-import { formatCurrency, formatPercentage } from "../../../utils";
+import { formatCurrency, formatPercentage } from "../../../utils/utils";
 import { useNavigate } from "react-router-dom";
 import { useNotification } from "../../../contexts/NotificationContext";
 import { useAuth } from "../../../contexts/AuthContext";

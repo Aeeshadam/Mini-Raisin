@@ -1,7 +1,7 @@
 import React from "react";
 import { Product, DashboardProduct } from "../../types";
 import styles from "./style.module.css";
-import { formatCurrency, formatPercentage } from "../../utils";
+import { formatCurrency, formatPercentage } from "../../utils/utils";
 
 interface ProductDetailsProps {
   product: Product | DashboardProduct;

@@ -1,8 +1,10 @@
 import React from "react";
-import styles from "./style.module.css";
-import { formatCurrency } from "../../utils";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { formatCurrency } from "../../utils/utils";
 import { DashboardProduct } from "../../types";
 import ProductSections from "./ProductSections";
+import styles from "./style.module.css";
 
 interface DashboardProps {
   activeProducts: DashboardProduct[];
@@ -13,6 +15,9 @@ const Dashboard: React.FC<DashboardProps> = ({
   activeProducts,
   closedProducts,
 }) => {
+  const loading = useSelector(
+    (state: RootState) => state.activeDeposits.loading
+  );
   const totalInvested = activeProducts.reduce(
     (sum, product) => sum + product.balance,
     0
@@ -21,8 +26,12 @@ const Dashboard: React.FC<DashboardProps> = ({
   const hasActiveProducts = activeProducts.length > 0;
   const hasClosedProducts = closedProducts.length > 0;
 
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
   if (!hasActiveProducts && !hasClosedProducts) {
-    return <h2>You have no deposits</h2>;
+    return <h2>No products found</h2>;
   }
 
   return (

@@ -11,6 +11,8 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Apply from "./pages/Apply";
+import ProtectedRoute from "./components/ProtectedRoute";
+import NotFound from "./components/NotFound";
 
 const App = () => {
   const activeProductsData = useSelector(
@@ -27,16 +29,19 @@ const App = () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route
-              path="/dashboard"
-              element={
-                <Dashboard
-                  activeProducts={activeProductsData}
-                  closedProducts={closedProductsData}
-                />
-              }
-            />
-            <Route path="apply/:productId" element={<Apply />} />
+            <Route element={<ProtectedRoute />}>
+              <Route
+                path="/dashboard"
+                element={
+                  <Dashboard
+                    activeProducts={activeProductsData}
+                    closedProducts={closedProductsData}
+                  />
+                }
+              />
+              <Route path="apply/:productId" element={<Apply />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
         </Router>

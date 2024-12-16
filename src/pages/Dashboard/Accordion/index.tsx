@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { DashboardProduct } from "../../../types";
 import Button from "../../../components/Button";
 import styles from "./style.module.css";
-import { formatCurrency } from "../../../utils";
+import { formatCurrency } from "../../../utils/utils";
 import ProductDetails from "../../../components/ProductDetails.tsx";
 import { useCloseDeposit } from "../../../contexts/CloseDepositContext";
 

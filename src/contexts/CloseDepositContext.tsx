@@ -4,6 +4,7 @@ import { DashboardProduct } from "../types";
 import { setClosedDeposits } from "../store/slices/closedDepositsSlice";
 import { removeActiveDeposit } from "../store/slices/activeDepositsSlice";
 import { useNotification } from "./NotificationContext";
+import { saveDeposit, removeDeposit } from "../utils/localStorageUtils";
 
 interface CloseDepositContextProps {
   handleCloseDeposit: () => void;
@@ -35,6 +36,8 @@ export const CloseDepositProvider: React.FC<CloseDepositProviderProps> = ({
     };
     dispatch(setClosedDeposits([newDeposit]));
     dispatch(removeActiveDeposit(product.id));
+    saveDeposit("closed", newDeposit);
+    removeDeposit("active", product.id);
     showNotification("Deposit closed successfully", "success");
   };
 
