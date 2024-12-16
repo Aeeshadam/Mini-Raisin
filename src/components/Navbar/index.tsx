@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./style.module.css";
-import { navLinks } from "../../constants";
-import Button from "../Button";
+import useAuth from "../../hooks/useAuth";
+import LogInButton from "./LogInButton";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const { user } = useAuth();
   const handleMenuClick = () => setIsMenuOpen((prevState) => !prevState);
   const handleNavLinkClick = () => setIsMenuOpen(false);
   return (
@@ -30,22 +30,31 @@ const Navbar = () => {
         }`}
       >
         <ul className={styles.navLinks} role="menu">
-          {Array.isArray(navLinks) &&
-            navLinks.map((link) => (
-              <li key={link.id} role="menuitem">
-                <NavLink
-                  onClick={handleNavLinkClick}
-                  to={link.path}
-                  className={({ isActive }) =>
-                    isActive ? styles.activeLink : ""
-                  }
-                >
-                  {link.text}
-                </NavLink>
-              </li>
-            ))}
+          <li key="home" role="menuitem">
+            <NavLink
+              onClick={handleNavLinkClick}
+              to={"/"}
+              className={({ isActive }) => (isActive ? styles.activeLink : "")}
+            >
+              Home
+            </NavLink>
+          </li>
+
+          {user && (
+            <li key="dashboard" role="menuitem">
+              <NavLink
+                onClick={handleNavLinkClick}
+                to={"/dashboard"}
+                className={({ isActive }) =>
+                  isActive ? styles.activeLink : ""
+                }
+              >
+                Dashboard
+              </NavLink>
+            </li>
+          )}
         </ul>
-        <Button to="/login">Log in</Button>
+        <LogInButton />
       </div>
     </nav>
   );
