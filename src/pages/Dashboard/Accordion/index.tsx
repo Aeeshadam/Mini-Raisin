@@ -4,7 +4,7 @@ import Button from "../../../components/Button";
 import styles from "./style.module.css";
 import { formatCurrency } from "../../../utils";
 import ProductDetails from "../../../components/ProductDetails.tsx";
-import useCloseDeposit from "../../../hooks/useCloseDeposit";
+import { useCloseDeposit } from "../../../contexts/CloseDepositContext";
 
 interface AccordionProps {
   product: DashboardProduct;
@@ -14,7 +14,7 @@ interface AccordionProps {
 const Accordion: React.FC<AccordionProps> = ({ product, isActive }) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleToggleAccordion = () => setIsOpen((prev) => !prev);
-  const { handleCloseDeposit } = useCloseDeposit(product);
+  const { handleCloseDeposit } = useCloseDeposit();
   if (!product) return null;
 
   return (

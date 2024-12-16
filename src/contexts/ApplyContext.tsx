@@ -1,12 +1,32 @@
-import React, { useState } from "react";
+import React, { createContext, useContext, useState, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { DashboardProduct, Product } from "../types";
 import { setActiveDeposits } from "../store/slices/activeDepositsSlice";
 import { formatNumber } from "../utils";
+import { useNotification } from "./NotificationContext";
 
-const useApplyForm = (product: Product | undefined) => {
+interface ApplyFormContextProps {
+  depositAmount: string;
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+}
+
+const ApplyFormContext = createContext<ApplyFormContextProps | undefined>(
+  undefined
+);
+
+interface ApplyFormProviderProps {
+  children: ReactNode;
+  product: Product | undefined;
+}
+
+export const ApplyFormProvider: React.FC<ApplyFormProviderProps> = ({
+  children,
+  product,
+}) => {
   const [depositAmount, setDepositAmount] = useState<string>("");
+  const { showNotification } = useNotification();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -15,14 +35,12 @@ const useApplyForm = (product: Product | undefined) => {
     setDepositAmount(formatNumber(value));
   };
 
-  const isValidDeposit = (value: string) => {
-    if (!product) {
-      return false;
-    }
+  const isValidAmount = (value: string) => {
+    if (!product) return false;
     const numericValue = parseFloat(value.replace(/,/g, ""));
     return (
-      numericValue >= product?.minimumDeposit &&
-      numericValue <= product?.maximumDeposit
+      numericValue >= product.minimumDeposit &&
+      numericValue <= product.maximumDeposit
     );
   };
 
@@ -42,13 +60,15 @@ const useApplyForm = (product: Product | undefined) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!isValidDeposit(depositAmount)) {
-      alert("Invalid deposit amount");
+    if (!isValidAmount(depositAmount)) {
+      showNotification(
+        "Deposit amount must be within the min and max deposit limits",
+        "error"
+      );
       return;
     }
-    if (!product) {
-      return;
-    }
+    if (!product) return;
+
     const numericValue = parseFloat(depositAmount.replace(/,/g, ""));
     const startDate = new Date().toISOString().split("T")[0];
     const interestEarned = calculateInterestEarned(
@@ -56,17 +76,36 @@ const useApplyForm = (product: Product | undefined) => {
       product.interestRate,
       startDate
     );
+
     const newDeposit: DashboardProduct = {
       ...product,
-      interestEarned: interestEarned,
+      interestEarned,
       balance: numericValue,
       startDate,
     };
+
     dispatch(setActiveDeposits([newDeposit]));
     navigate("/dashboard");
+    showNotification("Deposit opened successfully", "success");
   };
 
-  return { depositAmount, handleInputChange, handleSubmit };
+  return (
+    <ApplyFormContext.Provider
+      value={{
+        depositAmount,
+        handleInputChange,
+        handleSubmit,
+      }}
+    >
+      {children}
+    </ApplyFormContext.Provider>
+  );
 };
 
-export default useApplyForm;
+export const useApplyForm = () => {
+  const context = useContext(ApplyFormContext);
+  if (!context) {
+    throw new Error("useApplyForm must be used within an ApplyFormProvider");
+  }
+  return context;
+};

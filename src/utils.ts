@@ -11,3 +11,11 @@ export const formatNumber = (value: string) => {
   const numberValue = value.replace(/\D/g, "");
   return numberValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
+
+export const getInitials = (name: string) => {
+  const initials = name
+    .split(" ")
+    .map((word) => word[0])
+    .join("");
+  return initials.toUpperCase();
+};

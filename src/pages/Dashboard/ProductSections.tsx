@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./style.module.css";
 import Accordion from "./Accordion";
 import { DashboardProduct } from "../../types";
+import { CloseDepositProvider } from "../../contexts/CloseDepositContext";
 
 interface ProductSectionsProps {
   title: string;
@@ -18,7 +19,9 @@ const ProductSections: React.FC<ProductSectionsProps> = ({
     <section className={styles.sectionContainer}>
       <h3 className={styles.sectionHeading}>{title}</h3>
       {products.map((product) => (
-        <Accordion key={product.id} product={product} isActive={isActive} />
+        <CloseDepositProvider key={product.id} product={product}>
+          <Accordion product={product} isActive={isActive} />
+        </CloseDepositProvider>
       ))}
     </section>
   );

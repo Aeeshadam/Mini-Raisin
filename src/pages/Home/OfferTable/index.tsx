@@ -3,12 +3,29 @@ import { Product } from "../../../types";
 import styles from "./style.module.css";
 import Button from "../../../components/Button";
 import { formatCurrency, formatPercentage } from "../../../utils";
+import { useNavigate } from "react-router-dom";
+import { useNotification } from "../../../contexts/NotificationContext";
+import { useAuth } from "../../../contexts/AuthContext";
 
 interface OfferTableProps {
   products: Product[];
 }
 
 const OfferTable: React.FC<OfferTableProps> = ({ products }) => {
+  const { showNotification } = useNotification();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleApplyClick = (productId: string) => {
+    if (!user) {
+      showNotification(
+        "Please log in with google authentication to apply for a product",
+        "info"
+      );
+    } else {
+      navigate(`/apply/${productId}`);
+    }
+  };
   if (!products.length) {
     return <h2>No products available</h2>;
   }
@@ -55,7 +72,10 @@ const OfferTable: React.FC<OfferTableProps> = ({ products }) => {
                 {formatCurrency(product.maximumDeposit)}
               </td>
               <td>
-                <Button to={`/apply/${product.id}`} className="outlined">
+                <Button
+                  onClick={() => handleApplyClick(product.id)}
+                  className="outlined"
+                >
                   Apply
                 </Button>
               </td>

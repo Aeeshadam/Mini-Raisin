@@ -25,3 +25,10 @@ export interface DashboardProduct extends Product {
   startDate: string;
   closedDate?: string;
 }
+
+export interface NotificationContextProps {
+  message: string | null;
+  type: "success" | "error" | "info" | null;
+  showNotification: (msg: string, type: "success" | "error" | "info") => void;
+  closeNotification: () => void;
+}

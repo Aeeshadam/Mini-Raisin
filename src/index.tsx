@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./styles/index.css";
 import { Provider } from "react-redux";
+import { NotificationProvider } from "./contexts/NotificationContext";
 import store from "./store/store";
 
 const root = ReactDOM.createRoot(
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <NotificationProvider>
+        <App />
+      </NotificationProvider>
     </Provider>
   </React.StrictMode>
 );
