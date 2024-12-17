@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import Apply from "./pages/Apply";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./components/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
   const activeProductsData = useSelector(
@@ -26,6 +27,7 @@ const App = () => {
     <div className="container">
       <AuthProvider>
         <Router>
+          <ScrollToTop />
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
