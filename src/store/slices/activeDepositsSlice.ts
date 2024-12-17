@@ -27,9 +27,16 @@ const activeDepositsSlice = createSlice({
     setLoading(state, action: PayloadAction<boolean>) {
       state.loading = action.payload;
     },
+    resetActiveDeposits: (state) => {
+      return initialState;
+    },
   },
 });
 
-export const { setActiveDeposits, removeActiveDeposit, setLoading } =
-  activeDepositsSlice.actions;
+export const {
+  setActiveDeposits,
+  removeActiveDeposit,
+  setLoading,
+  resetActiveDeposits,
+} = activeDepositsSlice.actions;
 export default activeDepositsSlice.reducer;

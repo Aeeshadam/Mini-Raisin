@@ -16,8 +16,12 @@ const closedDepositsSlice = createSlice({
     setClosedDeposits(state, action: PayloadAction<DashboardProduct[]>) {
       state.closedDeposits = [...state.closedDeposits, ...action.payload];
     },
+    resetClosedDeposits: (state) => {
+      return initialState;
+    },
   },
 });
 
-export const { setClosedDeposits } = closedDepositsSlice.actions;
+export const { setClosedDeposits, resetClosedDeposits } =
+  closedDepositsSlice.actions;
 export default closedDepositsSlice.reducer;

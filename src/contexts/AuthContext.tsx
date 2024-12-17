@@ -10,8 +10,12 @@ import { useDispatch } from "react-redux";
 import {
   setActiveDeposits,
   setLoading,
+  resetActiveDeposits,
 } from "../store/slices/activeDepositsSlice";
-import { setClosedDeposits } from "../store/slices/closedDepositsSlice";
+import {
+  setClosedDeposits,
+  resetClosedDeposits,
+} from "../store/slices/closedDepositsSlice";
 import { useNotification } from "./NotificationContext";
 import { loadDeposits } from "../utils/localStorageUtils";
 
@@ -60,6 +64,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const signOutUser = async () => {
     try {
       await signOut(auth);
+      dispatch(resetActiveDeposits());
+      dispatch(resetClosedDeposits());
       showNotification("Logged out", "info");
     } catch (error) {
       console.error("Error signing out", error);
