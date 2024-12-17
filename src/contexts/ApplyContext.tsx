@@ -80,6 +80,7 @@ export const ApplyFormProvider: React.FC<ApplyFormProviderProps> = ({
 
     const newDeposit: DashboardProduct = {
       ...product,
+      id: `${product.id}-${Date.now()}`,
       interestEarned,
       balance: numericValue,
       startDate,

@@ -18,8 +18,9 @@
 
 .logoContainer {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  justify-content: start;
+  gap: var(--spacing-1);
   margin-bottom: var(--spacing-1);
 }
 
@@ -67,13 +68,7 @@
   }
 
   .logoContainer {
-    flex-direction: row;
-    align-items: center;
     justify-content: end;
-  }
-
-  .logo {
-    margin-right: 8px;
   }
 }
 

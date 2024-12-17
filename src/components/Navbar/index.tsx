@@ -28,13 +28,21 @@ const Navbar = () => {
         />
       </div>
       <div className={`${styles.menu} ${isMenuOpen ? styles.open : ""}`}>
-        <NavLink to="/" className={styles.navLink} onClick={handleNavLinkClick}>
+        <NavLink
+          className={({ isActive }) =>
+            `${styles.navLink} ${isActive ? styles.activeLink : ""}`
+          }
+          to="/"
+          onClick={handleNavLinkClick}
+        >
           Home
         </NavLink>
         {user && (
           <NavLink
             to="/dashboard"
-            className={styles.navLink}
+            className={({ isActive }) =>
+              `${styles.navLink} ${isActive ? styles.activeLink : ""}`
+            }
             onClick={handleNavLinkClick}
           >
             Dashboard
