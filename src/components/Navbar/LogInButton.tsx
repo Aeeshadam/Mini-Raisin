@@ -15,7 +15,12 @@ const LogInButton: React.FC = () => {
     return <Button onClick={handleSignOut}>Log Out</Button>;
   }
 
-  return <Button onClick={signInWithGoogle}>Log In</Button>;
+  return (
+    <Button onClick={signInWithGoogle} className="googleButton">
+      <img src="/google.png" alt="google logo" />
+      Log In with Google
+    </Button>
+  );
 };
 
 export default LogInButton;

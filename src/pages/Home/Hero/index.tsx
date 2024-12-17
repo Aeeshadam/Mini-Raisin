@@ -19,7 +19,10 @@ const Hero = () => {
         {user ? (
           <Button to="/dashboard">Dashboard</Button>
         ) : (
-          <Button onClick={signInWithGoogle}>Get Started</Button>
+          <Button onClick={signInWithGoogle} className="googleButton">
+            <img src="/google.png" alt="google logo" />
+            Log In with Google
+          </Button>
         )}
       </section>
     </header>
