@@ -42,14 +42,17 @@ export const ApplyFormProvider: React.FC<ApplyFormProviderProps> = ({
     setDepositAmount(formatNumber(value));
   };
 
-  const isValidAmount = (value: string) => {
-    if (!product) return false;
-    const numericValue = parseFloat(value.replace(/,/g, ""));
-    return (
-      numericValue >= product.minimumDeposit &&
-      numericValue <= product.maximumDeposit
-    );
-  };
+  const isValidAmount = useCallback(
+    (value: string) => {
+      if (!product) return false;
+      const numericValue = parseFloat(value.replace(/,/g, ""));
+      return (
+        numericValue >= product.minimumDeposit &&
+        numericValue <= product.maximumDeposit
+      );
+    },
+    [product]
+  );
 
   const calculateInterestEarned = useCallback(
     (amount: number, rate: number, startDate: string) => {
