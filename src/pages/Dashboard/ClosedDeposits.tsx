@@ -12,7 +12,7 @@ const ClosedDeposits = () => {
   return (
     <section className={styles.sectionContainer}>
       <h3 className={styles.sectionHeading}>Closed Deposits</h3>
-      {closedDeposits.map((product) => (
+      {closedDeposits?.map((product) => (
         <CloseDepositProvider key={product.id} product={product}>
           <Accordion productId={product.id} isActive={false} />
         </CloseDepositProvider>

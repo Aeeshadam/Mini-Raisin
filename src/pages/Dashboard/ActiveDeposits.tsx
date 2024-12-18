@@ -12,7 +12,7 @@ const ActiveDeposits = () => {
   return (
     <section className={styles.sectionContainer}>
       <h3 className={styles.sectionHeading}>Active Deposits</h3>
-      {activeProducts.map((product) => (
+      {activeProducts?.map((product) => (
         <CloseDepositProvider key={product.id} product={product}>
           <Accordion productId={product.id} isActive={true} />
         </CloseDepositProvider>
