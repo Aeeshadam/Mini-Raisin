@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import styles from "./style.module.css";
 import { useAuth } from "../../contexts/AuthContext";
 import LogInButton from "./LogInButton";
 import { getInitials } from "../../utils/utils";
+import styles from "./style.module.css";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -50,7 +50,7 @@ const Navbar = () => {
         )}
         <LogInButton />
         {user && (
-          <div className={styles.userInitials}>
+          <div className={styles.userInitials} aria-label="name-initials">
             {getInitials(user.displayName || "")}
           </div>
         )}

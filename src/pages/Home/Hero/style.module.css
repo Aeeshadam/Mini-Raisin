@@ -1,43 +1,43 @@
 .hero {
   position: absolute;
-  top: 61px;
+  top: var(--navbar-height); /* 61px is the height of the navbar*/
   left: 0;
-  width: 100vw;
-  height: 400px;
-  background-image: url("/public/hero.jpg");
-  background-size: cover;
-  background-position: center center;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
   padding: 0;
+  width: 100vw;
+  height: var(--hero-height);
+  background-image: url("/public/hero.jpg");
+  background-size: cover;
+  background-position: center center;
   z-index: -1;
 }
 
 .heroOverlay {
   position: absolute;
-  top: 61px;
+  top: var(--navbar-height);
   left: 0;
   width: 100vw;
-  height: 400px;
+  height: var(--hero-height);
   background-color: var(--primary-color);
   opacity: 0.6;
   z-index: 1;
 }
 
 .heroSpacer {
-  height: 400px;
+  height: var(--hero-height);
 }
 
 .heroContent {
   position: absolute;
-  top: 61px;
+  top: var(--navbar-height);
   left: 50%;
   transform: translateX(-50%);
   width: 75%;
   margin: 0 auto;
-  height: 400px;
+  height: var(--hero-height);
   display: flex;
   flex-direction: column;
   align-items: center;

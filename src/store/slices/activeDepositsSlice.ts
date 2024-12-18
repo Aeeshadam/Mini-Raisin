@@ -16,7 +16,7 @@ const activeDepositsSlice = createSlice({
   initialState,
   reducers: {
     setActiveDeposits(state, action: PayloadAction<DashboardProduct[]>) {
-      state.activeDeposits = [...state.activeDeposits, ...action.payload];
+      state.activeDeposits.push(...action.payload);
       state.loading = false;
     },
     removeActiveDeposit(state, action: PayloadAction<string>) {
@@ -28,7 +28,8 @@ const activeDepositsSlice = createSlice({
       state.loading = action.payload;
     },
     resetActiveDeposits: (state) => {
-      return initialState;
+      state.activeDeposits = [];
+      state.loading = true;
     },
   },
 });

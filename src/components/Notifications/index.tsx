@@ -14,10 +14,13 @@ const Notification: React.FC<NotificationProps> = ({
 }) => {
   return (
     <div
+      role="alert"
       className={`${styles.notification} ${type !== null ? styles[type] : ""} `}
     >
       <p>{message}</p>
-      <button onClick={onClose}>Close</button>
+      <button onClick={onClose} aria-label="Close notification">
+        Close
+      </button>
     </div>
   );
 };

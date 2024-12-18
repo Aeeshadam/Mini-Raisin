@@ -7,10 +7,16 @@ const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.footerColumns}>
         {footerLinks?.map(({ id, links }) => (
-          <ul className={styles.footerLinks} key={id}>
+          <ul
+            className={styles.footerLinks}
+            key={id}
+            aria-labelledby={`footer-section-${id}`}
+          >
             {links?.map(({ id, title: linkText, url }) => (
               <li key={id}>
-                <a href={url}>{linkText}</a>
+                <a href={url} aria-label={linkText}>
+                  {linkText}{" "}
+                </a>
               </li>
             ))}
           </ul>

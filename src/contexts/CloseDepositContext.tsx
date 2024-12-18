@@ -1,4 +1,9 @@
-import React, { createContext, useContext, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  ReactNode,
+  useCallback,
+} from "react";
 import { useDispatch } from "react-redux";
 import { DashboardProduct } from "../types";
 import { setClosedDeposits } from "../store/slices/closedDepositsSlice";
@@ -26,7 +31,7 @@ export const CloseDepositProvider: React.FC<CloseDepositProviderProps> = ({
   const dispatch = useDispatch();
   const { showNotification } = useNotification();
 
-  const handleCloseDeposit = () => {
+  const handleCloseDeposit = useCallback(() => {
     if (!product) {
       return;
     }
@@ -39,7 +44,7 @@ export const CloseDepositProvider: React.FC<CloseDepositProviderProps> = ({
     saveDeposit("closed", newDeposit);
     removeDeposit("active", product.id);
     showNotification("Deposit closed successfully", "success");
-  };
+  }, [dispatch, product, showNotification]);
 
   return (
     <CloseDepositContext.Provider value={{ handleCloseDeposit }}>

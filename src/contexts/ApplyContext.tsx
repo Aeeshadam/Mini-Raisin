@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  ReactNode,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { DashboardProduct, Product } from "../types";
@@ -45,52 +51,62 @@ export const ApplyFormProvider: React.FC<ApplyFormProviderProps> = ({
     );
   };
 
-  const calculateInterestEarned = (
-    amount: number,
-    rate: number,
-    startDate: string
-  ) => {
-    const dailyRate = rate / 100 / 365;
-    const start = new Date(startDate);
-    const now = new Date();
-    const days = Math.floor(
-      (now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)
-    );
-    return amount * dailyRate * days;
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!isValidAmount(depositAmount)) {
-      showNotification(
-        "Deposit amount must be within the min and max deposit limits",
-        "error"
+  const calculateInterestEarned = useCallback(
+    (amount: number, rate: number, startDate: string) => {
+      const dailyRate = rate / 100 / 365;
+      const start = new Date(startDate);
+      const now = new Date();
+      const days = Math.floor(
+        (now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)
       );
-      return;
-    }
-    if (!product) return;
+      return amount * dailyRate * days;
+    },
+    []
+  );
 
-    const numericValue = parseFloat(depositAmount.replace(/,/g, ""));
-    const startDate = new Date().toISOString().split("T")[0];
-    const interestEarned = calculateInterestEarned(
-      numericValue,
-      product.interestRate,
-      startDate
-    );
+  const handleSubmit = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (!isValidAmount(depositAmount)) {
+        showNotification(
+          "Deposit amount must be within the min and max deposit limits",
+          "error"
+        );
+        return;
+      }
+      if (!product) return;
 
-    const newDeposit: DashboardProduct = {
-      ...product,
-      id: `${product.id}-${Date.now()}`,
-      interestEarned,
-      balance: numericValue,
-      startDate,
-    };
+      const numericValue = parseFloat(depositAmount.replace(/,/g, ""));
+      const startDate = new Date().toISOString().split("T")[0];
+      const interestEarned = calculateInterestEarned(
+        numericValue,
+        product.interestRate,
+        startDate
+      );
 
-    dispatch(setActiveDeposits([newDeposit]));
-    saveDeposit("active", newDeposit);
-    navigate("/dashboard");
-    showNotification("Deposit opened successfully", "success");
-  };
+      const newDeposit: DashboardProduct = {
+        ...product,
+        id: `${product.id}-${Date.now()}`,
+        interestEarned,
+        balance: numericValue,
+        startDate,
+      };
+
+      dispatch(setActiveDeposits([newDeposit]));
+      saveDeposit("active", newDeposit);
+      navigate("/dashboard");
+      showNotification("Deposit opened successfully", "success");
+    },
+    [
+      depositAmount,
+      product,
+      showNotification,
+      calculateInterestEarned,
+      dispatch,
+      navigate,
+      isValidAmount,
+    ]
+  );
 
   return (
     <ApplyFormContext.Provider

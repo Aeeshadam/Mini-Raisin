@@ -5,8 +5,8 @@ import {
   onAuthStateChanged,
   User,
 } from "firebase/auth";
-import { auth, provider } from "../firebaseConfig";
 import { useDispatch } from "react-redux";
+import { auth, provider } from "../firebaseConfig";
 import {
   setActiveDeposits,
   setLoading,

@@ -1,15 +1,17 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Product } from "../../types";
 import products from "../../data/products.json";
-import ProductDetails from "../../components/ProductDetails.tsx";
-import ApplyForm from "./ApplyForm";
+import ProductDetails from "../../components/ProductDetails";
 import { ApplyFormProvider } from "../../contexts/ApplyContext";
+import ApplyForm from "./ApplyForm";
+import { Product } from "../../types";
 import styles from "./style.module.css";
 
-const Apply: React.FC = () => {
+const Apply = () => {
   const { productId } = useParams<{ productId: string }>();
-  const product = products.find((product: Product) => product.id === productId);
+  const product = products?.find(
+    (product: Product) => product.id === productId
+  );
 
   if (!product) {
     return <h2>Product not found</h2>;

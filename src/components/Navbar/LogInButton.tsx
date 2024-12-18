@@ -1,6 +1,6 @@
 import React from "react";
-import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 import Button from "../Button";
 
 const LogInButton: React.FC = () => {
@@ -11,6 +11,7 @@ const LogInButton: React.FC = () => {
     signOutUser();
     navigate("/");
   };
+
   if (user) {
     return <Button onClick={handleSignOut}>Log Out</Button>;
   }

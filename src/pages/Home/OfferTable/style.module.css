@@ -6,7 +6,6 @@
 
 .offerTable th,
 .offerTable td {
-  border-bottom: 1px solid #ddd;
   padding: 24px;
   text-align: left;
 }
@@ -54,6 +53,10 @@
     position: relative;
   }
 
+  .logo {
+    width: 30px;
+    height: auto;
+  }
   .offerTable td::before {
     content: attr(data-label);
     position: absolute;

@@ -1,20 +1,29 @@
 import React, { useState } from "react";
-import { DashboardProduct } from "../../../types";
-import Button from "../../../components/Button";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { DashboardProduct } from "../../types";
+import Button from "../Button";
 import styles from "./style.module.css";
-import { formatCurrency } from "../../../utils/utils";
-import ProductDetails from "../../../components/ProductDetails.tsx";
-import { useCloseDeposit } from "../../../contexts/CloseDepositContext";
+import { formatCurrency } from "../../utils/utils";
+import ProductDetails from "../ProductDetails";
+import { useCloseDeposit } from "../../contexts/CloseDepositContext";
 
 interface AccordionProps {
-  product: DashboardProduct;
+  productId: string;
   isActive: boolean;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ product, isActive }) => {
+const Accordion: React.FC<AccordionProps> = ({ productId, isActive }) => {
+  const product = useSelector((state: RootState) =>
+    isActive
+      ? state.activeDeposits.activeDeposits.find((p) => p.id === productId)
+      : state.closedDeposits.closedDeposits.find((p) => p.id === productId)
+  ) as DashboardProduct;
+
   const [isOpen, setIsOpen] = useState(false);
-  const handleToggleAccordion = () => setIsOpen((prev) => !prev);
+  const toggleAccordion = () => setIsOpen((prev) => !prev);
   const { handleCloseDeposit } = useCloseDeposit();
+
   if (!product) return null;
 
   return (
@@ -23,7 +32,7 @@ const Accordion: React.FC<AccordionProps> = ({ product, isActive }) => {
         <div className={styles.logoAndNameContainer}>
           <img
             src={product.logo}
-            alt={`${product.name} logo`}
+            alt={`${product.name} brand logo`}
             className={styles.accordionLogo}
           />
           <span>{product.name}</span>
@@ -31,7 +40,11 @@ const Accordion: React.FC<AccordionProps> = ({ product, isActive }) => {
         <h3 className={styles.balance}>{formatCurrency(product.balance)}</h3>
       </div>
       <div className={styles.accordionItemBottom}>
-        <Button onClick={handleToggleAccordion} className="link">
+        <Button
+          onClick={toggleAccordion}
+          className="link"
+          aria-expanded={isOpen}
+        >
           Details
         </Button>
 

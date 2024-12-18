@@ -1,17 +1,14 @@
 import React from "react";
-import { Product } from "../../../types";
-import styles from "./style.module.css";
-import Button from "../../../components/Button";
-import { formatCurrency, formatPercentage } from "../../../utils/utils";
 import { useNavigate } from "react-router-dom";
 import { useNotification } from "../../../contexts/NotificationContext";
 import { useAuth } from "../../../contexts/AuthContext";
+import { Product } from "../../../types";
+import products from "../../../data/products.json";
+import styles from "./style.module.css";
+import Button from "../../../components/Button";
+import { formatCurrency, formatPercentage } from "../../../utils/utils";
 
-interface OfferTableProps {
-  products: Product[];
-}
-
-const OfferTable: React.FC<OfferTableProps> = ({ products }) => {
+const OfferTable = () => {
   const { showNotification } = useNotification();
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -26,9 +23,11 @@ const OfferTable: React.FC<OfferTableProps> = ({ products }) => {
       navigate(`/apply/${productId}`);
     }
   };
+
   if (!products.length) {
-    return <h2>No products available</h2>;
+    return <h2>No products found</h2>;
   }
+
   return (
     <>
       <h2 className={styles.offerTableHeading}>
@@ -46,8 +45,9 @@ const OfferTable: React.FC<OfferTableProps> = ({ products }) => {
             <th></th>
           </tr>
         </thead>
+
         <tbody>
-          {products.map((product) => (
+          {products.map((product: Product) => (
             <tr key={product.id}>
               <td data-label="Interest Rate">
                 <h2 className={styles.interest}>
@@ -73,6 +73,7 @@ const OfferTable: React.FC<OfferTableProps> = ({ products }) => {
               </td>
               <td>
                 <Button
+                  aria-label={`Apply for ${product.name}`}
                   onClick={() => handleApplyClick(product.id)}
                   className="outlined"
                 >
