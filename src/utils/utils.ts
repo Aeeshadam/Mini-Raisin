@@ -19,3 +19,17 @@ export const getInitials = (name: string) => {
     .join("");
   return initials.toUpperCase();
 };
+
+export const calculateInterestEarned = (
+  amount: number,
+  rate: number,
+  startDate: string
+) => {
+  const dailyRate = rate / 100 / 365;
+  const start = new Date(startDate);
+  const end = new Date();
+  const days = Math.floor(
+    (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)
+  );
+  return amount * dailyRate * days;
+};

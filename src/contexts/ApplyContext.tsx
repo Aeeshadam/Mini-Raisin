@@ -54,19 +54,6 @@ export const ApplyFormProvider: React.FC<ApplyFormProviderProps> = ({
     [product]
   );
 
-  const calculateInterestEarned = useCallback(
-    (amount: number, rate: number, startDate: string) => {
-      const dailyRate = rate / 100 / 365;
-      const start = new Date(startDate);
-      const now = new Date();
-      const days = Math.floor(
-        (now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)
-      );
-      return amount * dailyRate * days;
-    },
-    []
-  );
-
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -81,16 +68,10 @@ export const ApplyFormProvider: React.FC<ApplyFormProviderProps> = ({
 
       const numericValue = parseFloat(depositAmount.replace(/,/g, ""));
       const startDate = new Date().toISOString().split("T")[0];
-      const interestEarned = calculateInterestEarned(
-        numericValue,
-        product.interestRate,
-        startDate
-      );
 
       const newDeposit: DashboardProduct = {
         ...product,
         id: `${product.id}-${Date.now()}`,
-        interestEarned,
         balance: numericValue,
         startDate,
       };
@@ -104,7 +85,6 @@ export const ApplyFormProvider: React.FC<ApplyFormProviderProps> = ({
       depositAmount,
       product,
       showNotification,
-      calculateInterestEarned,
       dispatch,
       navigate,
       isValidAmount,

@@ -6,7 +6,7 @@ import Button from "../Button";
 import styles from "./style.module.css";
 import { formatCurrency } from "../../utils/utils";
 import ProductDetails from "../ProductDetails";
-import { useCloseDeposit } from "../../contexts/CloseDepositContext";
+import { useDashboard } from "../../contexts/DasboardContext";
 
 interface AccordionProps {
   productId: string;
@@ -20,9 +20,9 @@ const Accordion: React.FC<AccordionProps> = ({ productId, isActive }) => {
       : state.closedDeposits.closedDeposits.find((p) => p.id === productId)
   ) as DashboardProduct;
 
+  const { handleCloseDeposit } = useDashboard();
   const [isOpen, setIsOpen] = useState(false);
   const toggleAccordion = () => setIsOpen((prev) => !prev);
-  const { handleCloseDeposit } = useCloseDeposit();
 
   if (!product) return null;
 
@@ -49,7 +49,10 @@ const Accordion: React.FC<AccordionProps> = ({ productId, isActive }) => {
         </Button>
 
         {isActive && (
-          <Button className="outlined" onClick={handleCloseDeposit}>
+          <Button
+            className="outlined"
+            onClick={() => handleCloseDeposit(product)}
+          >
             Close Deposit
           </Button>
         )}

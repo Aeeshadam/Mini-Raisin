@@ -11,7 +11,7 @@ export interface Product {
 
 export interface DashboardProduct extends Product {
   balance: number;
-  interestEarned: number;
   startDate: string;
   closedDate?: string;
+  interestEarned?: number;
 }

@@ -5,6 +5,7 @@ import { formatCurrency } from "../../utils/utils";
 import ActiveDeposits from "./ActiveDeposits";
 import CloseDeposits from "./ClosedDeposits";
 import styles from "./style.module.css";
+import { DashboardProvider } from "../../contexts/DasboardContext";
 
 const Dashboard = () => {
   const activeProducts = useSelector(
@@ -34,18 +35,20 @@ const Dashboard = () => {
   }
 
   return (
-    <main className={styles.dashboard}>
-      {hasActiveProducts && (
-        <>
-          <h2 className={styles.totalBalance}>
-            Total Invested: {formatCurrency(totalInvested)}
-          </h2>
-          <ActiveDeposits />
-        </>
-      )}
+    <DashboardProvider>
+      <main className={styles.dashboard}>
+        {hasActiveProducts && (
+          <>
+            <h2 className={styles.totalBalance}>
+              Total Invested: {formatCurrency(totalInvested)}
+            </h2>
+            <ActiveDeposits />
+          </>
+        )}
 
-      {hasClosedProducts && <CloseDeposits />}
-    </main>
+        {hasClosedProducts && <CloseDeposits />}
+      </main>
+    </DashboardProvider>
   );
 };
 
