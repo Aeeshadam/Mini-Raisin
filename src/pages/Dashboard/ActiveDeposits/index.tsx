@@ -1,10 +1,9 @@
-import { useDashboard } from "../../contexts/DasboardContext";
-import Accordion from "../../components/Accordion";
-import styles from "./style.module.css";
+import { useDashboard } from "../../../contexts/DashboardContext";
+import Accordion from "../../../components/Accordion";
+import styles from "../style.module.css";
 
 const ActiveDeposits = () => {
   const { activeDeposits } = useDashboard();
-  console.log(activeDeposits);
 
   return (
     <section className={styles.sectionContainer}>

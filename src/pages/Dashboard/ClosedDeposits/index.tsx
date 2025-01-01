@@ -1,6 +1,6 @@
-import { useDashboard } from "../../contexts/DashboardContext";
-import Accordion from "../../components/Accordion";
-import styles from "./style.module.css";
+import { useDashboard } from "../../../contexts/DashboardContext";
+import Accordion from "../../../components/Accordion";
+import styles from "../style.module.css";
 
 const ClosedDeposits = () => {
   const { closedDeposits } = useDashboard();
