@@ -1,5 +1,5 @@
 import { FC } from "react";
-import DetailItem from "./DetailItem";
+import DetailItem from "../DetailItem";
 import {
   formatCurrency,
   formatPercentage,

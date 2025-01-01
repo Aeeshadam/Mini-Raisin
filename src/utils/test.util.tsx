@@ -2,19 +2,11 @@ import React, { ReactElement } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { Provider } from "react-redux";
 import store from "../store/store";
-import { AuthProvider } from "../contexts/AuthContext";
-import { NotificationProvider } from "../contexts/NotificationContext";
 
 const AllProviders: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  return (
-    <Provider store={store}>
-      <NotificationProvider>
-        <AuthProvider>{children}</AuthProvider>
-      </NotificationProvider>
-    </Provider>
-  );
+  return <Provider store={store}>{children}</Provider>;
 };
 
 const customRender = (

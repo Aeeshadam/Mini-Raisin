@@ -14,6 +14,7 @@ const OfferTable = () => {
 
   const handleApplyClick = (productId: string) => {
     if (!user) {
+      console.log("Navigating to:", `/apply/${productId}`);
       showNotification(
         "Please log in with google authentication to apply for a product",
         "info"

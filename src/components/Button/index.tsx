@@ -46,7 +46,7 @@ const Button: FC<ButtonProps> = ({
       className={classNames}
       onClick={onClick}
       type={type}
-      aria-label="Button"
+      aria-label={children as string}
     >
       {renderIcon()}
       {children}

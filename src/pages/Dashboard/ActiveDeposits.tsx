@@ -4,6 +4,8 @@ import styles from "./style.module.css";
 
 const ActiveDeposits = () => {
   const { activeDeposits } = useDashboard();
+  console.log(activeDeposits);
+
   return (
     <section className={styles.sectionContainer}>
       <h3 className={styles.sectionHeading}>Active Deposits</h3>

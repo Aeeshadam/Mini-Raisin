@@ -6,7 +6,7 @@ import Button from "../Button";
 import styles from "./style.module.css";
 import { formatCurrency } from "../../utils";
 import ProductDetails from "../ProductDetails";
-import { useDashboard } from "../../contexts/DasboardContext";
+import { useDashboard } from "../../contexts/DashboardContext";
 
 interface AccordionProps {
   productId: string;
@@ -27,7 +27,7 @@ const Accordion: FC<AccordionProps> = ({ productId, isActive }) => {
   if (!product) return null;
 
   return (
-    <article className={styles.accordion}>
+    <article className={styles.accordion} data-testid="accordion">
       <div className={styles.accordionItemTop}>
         <div className={styles.logoAndNameContainer}>
           <img

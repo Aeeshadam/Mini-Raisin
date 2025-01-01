@@ -1,4 +1,4 @@
-import { useDashboard } from "../../contexts/DasboardContext";
+import { useDashboard } from "../../contexts/DashboardContext";
 import Accordion from "../../components/Accordion";
 import styles from "./style.module.css";
 

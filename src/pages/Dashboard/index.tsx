@@ -36,7 +36,7 @@ const Dashboard = () => {
 
   return (
     <DashboardProvider>
-      <main className={styles.dashboard}>
+      <main className={styles.dashboard} data-testid="dashboard">
         {hasActiveProducts && (
           <>
             <h2 className={styles.totalBalance}>
