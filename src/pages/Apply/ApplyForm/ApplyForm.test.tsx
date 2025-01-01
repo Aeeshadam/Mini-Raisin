@@ -33,7 +33,9 @@ describe("ApplyForm component", () => {
   it("calls handleInputChange when input value changes", () => {
     const handleInputChangeMock = jest.fn();
     mockUseApplyForm.mockReturnValue({
+      depositAmount: "",
       handleInputChange: handleInputChangeMock,
+      handleSubmit: jest.fn(),
     });
     render(<ApplyForm />);
 
@@ -48,6 +50,7 @@ describe("ApplyForm component", () => {
     const handleSubmitMock = jest.fn();
     mockUseApplyForm.mockReturnValue({
       depositAmount: "1000",
+      handleInputChange: jest.fn(),
       handleSubmit: handleSubmitMock,
     });
     render(<ApplyForm />);
