@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import CustomRouter from "../../components/CustomRouter";
 import LogInButton from "./index";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -25,18 +25,18 @@ describe("Navbar", () => {
 
   it("renders Log In button when user is not logged in", () => {
     render(
-      <BrowserRouter>
+      <CustomRouter>
         <LogInButton />
-      </BrowserRouter>
+      </CustomRouter>
     );
     expect(screen.getByText(/Log In with Google/i)).toBeInTheDocument();
   });
 
   it("initiates login when Log In button is clicked", () => {
     render(
-      <BrowserRouter>
+      <CustomRouter>
         <LogInButton />
-      </BrowserRouter>
+      </CustomRouter>
     );
     fireEvent.click(screen.getByText(/Log In with Google/i));
     expect(mockUseAuth).toHaveBeenCalled();
@@ -47,9 +47,9 @@ describe("Navbar", () => {
       user: { displayName: "John Doe" },
     });
     render(
-      <BrowserRouter>
+      <CustomRouter>
         <LogInButton />
-      </BrowserRouter>
+      </CustomRouter>
     );
 
     expect(screen.getByText(/Log Out/i)).toBeInTheDocument();
@@ -61,9 +61,9 @@ describe("Navbar", () => {
       signOutUser: jest.fn(),
     });
     render(
-      <BrowserRouter>
+      <CustomRouter>
         <LogInButton />
-      </BrowserRouter>
+      </CustomRouter>
     );
     fireEvent.click(screen.getByText(/Log Out/i));
     expect(mockUseAuth().signOutUser).toHaveBeenCalled();

@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import CustomRouter from "../../components/CustomRouter";
 import ScrollToTop from "./index";
 
 describe("ScrollToTop", () => {
@@ -8,13 +9,13 @@ describe("ScrollToTop", () => {
     window.scrollTo = jest.fn();
 
     render(
-      <BrowserRouter>
+      <CustomRouter>
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<div>Home</div>} />
           <Route path="/about" element={<div>About</div>} />
         </Routes>
-      </BrowserRouter>
+      </CustomRouter>
     );
 
     expect(window.scrollTo).toHaveBeenCalledWith(0, 0);

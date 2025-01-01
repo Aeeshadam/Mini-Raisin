@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import CustomRouter from "../../components/CustomRouter";
 import Navbar from "./index";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -25,9 +25,9 @@ describe("Navbar", () => {
 
   it("renders Navbar with Home link", () => {
     render(
-      <BrowserRouter>
+      <CustomRouter>
         <Navbar />
-      </BrowserRouter>
+      </CustomRouter>
     );
     expect(screen.getByText(/Home/i)).toBeInTheDocument();
   });
@@ -37,18 +37,18 @@ describe("Navbar", () => {
       user: { displayName: "John Doe" },
     });
     render(
-      <BrowserRouter>
+      <CustomRouter>
         <Navbar />
-      </BrowserRouter>
+      </CustomRouter>
     );
     expect(screen.getByText(/Dashboard/i)).toBeInTheDocument();
   });
 
   it("does not render Dashboard when user is not logged in", () => {
     render(
-      <BrowserRouter>
+      <CustomRouter>
         <Navbar />
-      </BrowserRouter>
+      </CustomRouter>
     );
     expect(screen.queryByText(/Dashboard/i)).not.toBeInTheDocument();
   });
@@ -58,9 +58,9 @@ describe("Navbar", () => {
       user: { displayName: "John Doe" },
     });
     render(
-      <BrowserRouter>
+      <CustomRouter>
         <Navbar />
-      </BrowserRouter>
+      </CustomRouter>
     );
     expect(screen.getByText("JD")).toBeInTheDocument();
   });
@@ -70,9 +70,9 @@ describe("Navbar", () => {
       user: { displayName: "John Doe" },
     });
     render(
-      <BrowserRouter>
+      <CustomRouter>
         <Navbar />
-      </BrowserRouter>
+      </CustomRouter>
     );
     const dashboardLink = screen.getByText(/Dashboard/i);
     fireEvent.click(dashboardLink);

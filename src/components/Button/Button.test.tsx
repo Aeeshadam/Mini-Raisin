@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import CustomRouter from "../../components/CustomRouter";
 import Button from "./index";
 
 describe("Button", () => {
@@ -11,9 +11,9 @@ describe("Button", () => {
 
   it("renders a NavLink when to prop is passed", () => {
     render(
-      <BrowserRouter>
+      <CustomRouter>
         <Button to="/home">Go home</Button>
-      </BrowserRouter>
+      </CustomRouter>
     );
     expect(screen.getByRole("link")).toHaveAttribute("href", "/home");
   });

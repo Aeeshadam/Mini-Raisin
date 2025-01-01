@@ -1,8 +1,9 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import ProtectedRoute from "./index";
+import CustomMemoryRouter from "../../components/CustomMemoryRouter";
 
 jest.mock("../../contexts/AuthContext", () => ({
   useAuth: jest.fn(),
@@ -20,27 +21,27 @@ describe("ProtectedRoute", () => {
   it("renders loading when authLoading is true", () => {
     mockUseAuth.mockReturnValue({ user: null, authLoading: true });
     render(
-      <MemoryRouter initialEntries={["/dashboard"]}>
+      <CustomMemoryRouter initialEntries={["/dashboard"]}>
         <Routes>
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<div>Dashboard</div>} />
           </Route>
         </Routes>
-      </MemoryRouter>
+      </CustomMemoryRouter>
     );
     expect(screen.getByText("Loading...")).toBeInTheDocument();
   });
 
   it("navigates to home when user is not authenticated", () => {
     render(
-      <MemoryRouter initialEntries={["/dashboard"]}>
+      <CustomMemoryRouter initialEntries={["/dashboard"]}>
         <Routes>
           <Route path="/" element={<div>Home</div>} />
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<div>Dashboard</div>} />
           </Route>
         </Routes>
-      </MemoryRouter>
+      </CustomMemoryRouter>
     );
     expect(screen.queryByText("Dashboard")).not.toBeInTheDocument();
     expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
@@ -50,13 +51,13 @@ describe("ProtectedRoute", () => {
   it("renders the protected route when user is authenticated", () => {
     mockUseAuth.mockReturnValue({ user: { uid: "123" }, authLoading: false });
     render(
-      <MemoryRouter initialEntries={["/dashboard"]}>
+      <CustomMemoryRouter initialEntries={["/dashboard"]}>
         <Routes>
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<div>Dashboard</div>} />
           </Route>
         </Routes>
-      </MemoryRouter>
+      </CustomMemoryRouter>
     );
     expect(screen.getByText("Dashboard")).toBeInTheDocument();
   });
