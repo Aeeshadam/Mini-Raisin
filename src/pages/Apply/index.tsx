@@ -7,9 +7,12 @@ import ApplyForm from "./ApplyForm";
 import { Product } from "../../types";
 import styles from "./style.module.css";
 
+const typedProducts: Product[] = products;
+
 const Apply = () => {
   const { productId } = useParams<{ productId: string }>();
-  const product = products?.find(
+
+  const product = typedProducts.find(
     (product: Product) => product.id === productId
   );
 
