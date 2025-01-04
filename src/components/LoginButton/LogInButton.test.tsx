@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import CustomRouter from "../../components/CustomRouter";
+import CustomMemoryRouter from "../../components/CustomMemoryRouter";
 import LogInButton from "./index";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -25,20 +25,24 @@ describe("Navbar", () => {
 
   it("renders Log In button when user is not logged in", () => {
     render(
-      <CustomRouter>
+      <CustomMemoryRouter>
         <LogInButton />
-      </CustomRouter>
+      </CustomMemoryRouter>
     );
-    expect(screen.getByText(/Log In with Google/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /Log In with Google/i })
+    ).toBeInTheDocument();
   });
 
   it("initiates login when Log In button is clicked", () => {
     render(
-      <CustomRouter>
+      <CustomMemoryRouter>
         <LogInButton />
-      </CustomRouter>
+      </CustomMemoryRouter>
     );
-    fireEvent.click(screen.getByText(/Log In with Google/i));
+    fireEvent.click(
+      screen.getByRole("button", { name: /Log In with Google/i })
+    );
     expect(mockUseAuth).toHaveBeenCalled();
   });
 
@@ -47,12 +51,14 @@ describe("Navbar", () => {
       user: { displayName: "John Doe" },
     });
     render(
-      <CustomRouter>
+      <CustomMemoryRouter>
         <LogInButton />
-      </CustomRouter>
+      </CustomMemoryRouter>
     );
 
-    expect(screen.getByText(/Log Out/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /Log Out/i })
+    ).toBeInTheDocument();
   });
 
   it("logs out when Log Out button is clicked", () => {
@@ -61,11 +67,11 @@ describe("Navbar", () => {
       signOutUser: jest.fn(),
     });
     render(
-      <CustomRouter>
+      <CustomMemoryRouter>
         <LogInButton />
-      </CustomRouter>
+      </CustomMemoryRouter>
     );
-    fireEvent.click(screen.getByText(/Log Out/i));
+    fireEvent.click(screen.getByRole("button", { name: /Log Out/i }));
     expect(mockUseAuth().signOutUser).toHaveBeenCalled();
   });
 });

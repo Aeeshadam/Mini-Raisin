@@ -21,6 +21,7 @@ describe("ApplyForm component", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
+
   it("renders ApplyForm with input and button", () => {
     render(<ApplyForm />);
 

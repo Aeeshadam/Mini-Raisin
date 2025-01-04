@@ -4,7 +4,7 @@ import OfferTable from "./index";
 import { useAuth } from "../../../contexts/AuthContext";
 import { useNotification } from "../../../contexts/NotificationContext";
 import { useNavigate } from "react-router-dom";
-import CustomRouter from "../../../components/CustomRouter";
+import CustomMemoryRouter from "../../../components/CustomMemoryRouter";
 
 jest.mock("../../../contexts/AuthContext", () => ({
   useAuth: jest.fn(),
@@ -48,9 +48,9 @@ describe("OfferTable", () => {
 
   it("renders OfferTable with complete details", () => {
     render(
-      <CustomRouter>
+      <CustomMemoryRouter>
         <OfferTable />
-      </CustomRouter>
+      </CustomMemoryRouter>
     );
     expect(screen.getByText("Product 1")).toBeInTheDocument();
     expect(screen.getByText("5.00%")).toBeInTheDocument();
@@ -63,9 +63,9 @@ describe("OfferTable", () => {
     const navigateMock = jest.fn();
     mockUseNavigate.mockReturnValue(navigateMock);
     render(
-      <CustomRouter>
+      <CustomMemoryRouter>
         <OfferTable />
-      </CustomRouter>
+      </CustomMemoryRouter>
     );
     const applyButton = screen.getByText("Apply");
     expect(applyButton).toBeInTheDocument();
@@ -76,9 +76,9 @@ describe("OfferTable", () => {
   it("shows notification when user is not logged in", () => {
     mockUseAuth.mockReturnValue({ user: null });
     render(
-      <CustomRouter>
+      <CustomMemoryRouter>
         <OfferTable />
-      </CustomRouter>
+      </CustomMemoryRouter>
     );
     const applyButton = screen.getByText("Apply");
     fireEvent.click(applyButton);

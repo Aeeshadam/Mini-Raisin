@@ -41,7 +41,7 @@ const initialState: Partial<RootState> = {
         logo: "test.png",
         balance: 1000,
         interestRate: 10,
-        minimumDeposit: 5000,
+        minimumDeposit: 6000,
         maximumDeposit: 20000,
         startDate: "2023-01-01",
       } as DashboardProduct,

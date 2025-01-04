@@ -1,7 +1,9 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import CustomRouter from "../../components/CustomRouter";
+import { Route, Routes } from "react-router-dom";
+import CustomMemoryRouter from "../../components/CustomMemoryRouter";
 import Navbar from "./index";
+
 import { useAuth } from "../../contexts/AuthContext";
 
 jest.mock("../../contexts/AuthContext", () => ({
@@ -25,11 +27,11 @@ describe("Navbar", () => {
 
   it("renders Navbar with Home link", () => {
     render(
-      <CustomRouter>
+      <CustomMemoryRouter>
         <Navbar />
-      </CustomRouter>
+      </CustomMemoryRouter>
     );
-    expect(screen.getByText(/Home/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Home/i })).toBeInTheDocument();
   });
 
   it("renders Dashboard when user is logged in", () => {
@@ -37,20 +39,24 @@ describe("Navbar", () => {
       user: { displayName: "John Doe" },
     });
     render(
-      <CustomRouter>
+      <CustomMemoryRouter>
         <Navbar />
-      </CustomRouter>
+      </CustomMemoryRouter>
     );
-    expect(screen.getByText(/Dashboard/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: /Dashboard/i })
+    ).toBeInTheDocument();
   });
 
   it("does not render Dashboard when user is not logged in", () => {
     render(
-      <CustomRouter>
+      <CustomMemoryRouter>
         <Navbar />
-      </CustomRouter>
+      </CustomMemoryRouter>
     );
-    expect(screen.queryByText(/Dashboard/i)).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", { name: /Dashboard/i })
+    ).not.toBeInTheDocument();
   });
 
   it("renders user initials when user is logged in", () => {
@@ -58,24 +64,29 @@ describe("Navbar", () => {
       user: { displayName: "John Doe" },
     });
     render(
-      <CustomRouter>
+      <CustomMemoryRouter>
         <Navbar />
-      </CustomRouter>
+      </CustomMemoryRouter>
     );
     expect(screen.getByText("JD")).toBeInTheDocument();
   });
 
-  it("navigates to dashboard when Dashboard link is clicked", () => {
+  it("navigates to the Dashboard when Dashboard link is clicked", () => {
     mockUseAuth.mockReturnValue({
       user: { displayName: "John Doe" },
     });
     render(
-      <CustomRouter>
-        <Navbar />
-      </CustomRouter>
+      <CustomMemoryRouter initialEntries={["/"]}>
+        <Routes>
+          <Route path="/" element={<Navbar />} />
+          <Route path="/dashboard" element={<div>Dashboard Page</div>} />
+        </Routes>
+      </CustomMemoryRouter>
     );
-    const dashboardLink = screen.getByText(/Dashboard/i);
+
+    const dashboardLink = screen.getByRole("link", { name: /Dashboard/i });
     fireEvent.click(dashboardLink);
-    expect(window.location.pathname).toBe("/dashboard");
+
+    expect(screen.getByText("Dashboard Page")).toBeInTheDocument();
   });
 });

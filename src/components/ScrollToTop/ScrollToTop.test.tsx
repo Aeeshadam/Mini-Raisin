@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import { Route, Routes } from "react-router-dom";
-import CustomRouter from "../../components/CustomRouter";
+import CustomMemoryRouter from "../../components/CustomMemoryRouter";
 import ScrollToTop from "./index";
 
 describe("ScrollToTop", () => {
@@ -9,13 +9,13 @@ describe("ScrollToTop", () => {
     window.scrollTo = jest.fn();
 
     render(
-      <CustomRouter>
+      <CustomMemoryRouter>
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<div>Home</div>} />
           <Route path="/about" element={<div>About</div>} />
         </Routes>
-      </CustomRouter>
+      </CustomMemoryRouter>
     );
 
     expect(window.scrollTo).toHaveBeenCalledWith(0, 0);

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import Hero from "./index";
 import { useAuth } from "../../../contexts/AuthContext";
-import CustomRouter from "../../../components/CustomRouter";
+import CustomMemoryRouter from "../../../components/CustomMemoryRouter";
 
 jest.mock("../../../contexts/AuthContext", () => ({
   useAuth: jest.fn(),
@@ -23,9 +23,9 @@ describe("Hero", () => {
   });
   it("renders dashboard button when user is logged in", () => {
     render(
-      <CustomRouter>
+      <CustomMemoryRouter>
         <Hero />
-      </CustomRouter>
+      </CustomMemoryRouter>
     );
 
     expect(
@@ -39,9 +39,9 @@ describe("Hero", () => {
     });
 
     render(
-      <CustomRouter>
+      <CustomMemoryRouter>
         <Hero />
-      </CustomRouter>
+      </CustomMemoryRouter>
     );
 
     expect(

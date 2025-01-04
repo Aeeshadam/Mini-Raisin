@@ -23,3 +23,4 @@ const CustomMemoryRouter: React.FC<CustomMemoryRouterProps> = ({
 };
 
 export default CustomMemoryRouter;
+// This component is a wrapper around the MemoryRouter component. It adds the future prop to enable the new features in React Router v7. It also suppress warning for the new features in the console.
