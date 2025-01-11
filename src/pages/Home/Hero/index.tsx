@@ -7,11 +7,10 @@ const Hero = () => {
   const { user, signInWithGoogle } = useAuth();
   return (
     <header className={styles.heroContainer}>
-      <div className={styles.hero} aria-label="background-image"></div>
       <div className={styles.heroOverlay}></div>
       <section className={styles.heroContent}>
         <h1>Maximize Your Savings with Secure Investment Accounts</h1>
-        <p className={styles.heroDescription}>
+        <p className={styles.heroDescription} aria-label="Website description">
           Explore high-yield savings accounts tailored to your financial goals.
           Secure, flexible, and rewarding.
         </p>

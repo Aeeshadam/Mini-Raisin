@@ -15,9 +15,9 @@ const Navbar = () => {
   return (
     <nav className={styles.nav}>
       <div className={styles.logoAndMenuContainer}>
-        <a className={styles.logo} href="/" aria-label="Logo">
+        <NavLink to="/" className={styles.logo} aria-label="Logo">
           <img src="/logo.png" alt="Logo" className={styles.logoImg} />
-        </a>
+        </NavLink>
 
         <img
           role="button"
