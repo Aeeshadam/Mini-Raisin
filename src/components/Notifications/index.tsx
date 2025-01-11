@@ -1,24 +1,19 @@
 import React from "react";
+import { useNotification } from "../../contexts/NotificationContext";
 import styles from "./style.module.css";
 
-interface NotificationProps {
-  message: string;
-  type: "success" | "error" | "info" | null;
-  onClose: () => void;
-}
+const Notification = () => {
+  const { message, type, closeNotification } = useNotification();
 
-const Notification: React.FC<NotificationProps> = ({
-  message,
-  type,
-  onClose,
-}) => {
+  if (!message) return null;
+
   return (
     <div
       role="alert"
-      className={`${styles.notification} ${type !== null ? styles[type] : ""} `}
+      className={`${styles.notification} ${type ? styles[type] : ""} `}
     >
       <p>{message}</p>
-      <button onClick={onClose} aria-label="Close notification">
+      <button onClick={closeNotification} aria-label="Close notification">
         Close
       </button>
     </div>

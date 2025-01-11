@@ -17,6 +17,11 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
   const [message, setMessage] = useState<string | null>(null);
   const [type, setType] = useState<"success" | "error" | "info" | null>(null);
 
+  const resetNotification = () => {
+    setMessage(null);
+    setType(null);
+  };
+
   const showNotification = (
     msg: string,
     type: "success" | "error" | "info"
@@ -24,14 +29,12 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
     setMessage(msg);
     setType(type);
     setTimeout(() => {
-      setMessage(null);
-      setType(null);
+      resetNotification();
     }, 3000);
   };
 
   const closeNotification = () => {
-    setMessage(null);
-    setType(null);
+    resetNotification();
   };
 
   return (

@@ -9,11 +9,11 @@
 }
 
 .notification.success {
-  background-color: #4caf50;
+  background-color: var(--success-color);
 }
 
 .notification.error {
-  background-color: #f44336;
+  background-color: var(--error-color);
 }
 
 .notification.info {

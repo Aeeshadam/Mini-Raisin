@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
-import { useNotification } from "./contexts/NotificationContext";
 import Notification from "./components/Notifications";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -13,7 +12,6 @@ import NotFound from "./components/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
-  const { message, type, closeNotification } = useNotification();
   return (
     <div className="container">
       <AuthProvider>
@@ -30,13 +28,7 @@ const App = () => {
           </Routes>
           <Footer />
         </Router>
-        {message && (
-          <Notification
-            message={message}
-            type={type}
-            onClose={closeNotification}
-          />
-        )}
+        <Notification />
       </AuthProvider>
     </div>
   );
