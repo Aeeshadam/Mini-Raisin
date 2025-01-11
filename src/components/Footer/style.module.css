@@ -24,30 +24,30 @@
   }
 }
 
-.footerLinks {
+.footerUl {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.footerLinks li {
+.footerLi {
   margin: 0.5rem 0;
 }
 
-.footerLinks a {
+.footerLinksAnchor {
   color: var(--grey-color);
   font-size: var(--font-size-small);
 }
 
-.footerLinks a:hover {
+.footerLinksAnchor:hover {
   color: var(--primary-color);
 }
 
-.footerLinks a:focus {
+.footerLinksAnchor:focus {
   color: var(--secondary-color);
 }
 
-.footer p {
+.footerParagraph {
   text-align: center;
   margin-top: var(--spacing-6);
   font-size: var(--font-size-small);

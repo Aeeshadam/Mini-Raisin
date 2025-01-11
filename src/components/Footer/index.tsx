@@ -8,10 +8,14 @@ const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.footerColumns}>
         {footerLinks?.map(({ id, links }) => (
-          <ul className={styles.footerLinks} key={id}>
+          <ul className={styles.footerUl} key={id}>
             {links?.map(({ id, title: linkText, url }) => (
-              <li key={id}>
-                <a href={url} aria-label={linkText}>
+              <li key={id} className={styles.footerLi}>
+                <a
+                  href={url}
+                  aria-label={linkText}
+                  className={styles.footerLinksAnchor}
+                >
                   {linkText}
                 </a>
               </li>
@@ -19,7 +23,9 @@ const Footer = () => {
           </ul>
         ))}
       </div>
-      <p>&copy; {thisYear} Invest. All rights reserved.</p>
+      <p className={styles.footerParagraph}>
+        &copy; {thisYear} Invest. All rights reserved.
+      </p>
     </footer>
   );
 };

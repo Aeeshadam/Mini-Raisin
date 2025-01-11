@@ -16,7 +16,7 @@ const Navbar = () => {
     <nav className={styles.nav}>
       <div className={styles.logoAndMenuContainer}>
         <a className={styles.logo} href="/" aria-label="Logo">
-          <img src="/logo.png" alt="Logo" />
+          <img src="/logo.png" alt="Logo" className={styles.logoImg} />
         </a>
 
         <img

@@ -44,7 +44,7 @@
   padding: var(--spacing-1);
 }
 
-.logo img {
+.logoImg {
   width: 12rem;
   height: auto;
 }

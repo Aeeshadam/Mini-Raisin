@@ -18,7 +18,6 @@ const LogInButton: React.FC = () => {
 
   return (
     <Button onClick={signInWithGoogle} className="googleButton">
-      <img src="/google.png" alt="google logo" />
       Log In with Google
     </Button>
   );

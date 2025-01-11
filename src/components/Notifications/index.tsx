@@ -13,7 +13,11 @@ const Notification = () => {
       className={`${styles.notification} ${type ? styles[type] : ""} `}
     >
       <p>{message}</p>
-      <button onClick={closeNotification} aria-label="Close notification">
+      <button
+        className={styles.notificationButton}
+        onClick={closeNotification}
+        aria-label="Close notification"
+      >
         Close
       </button>
     </div>

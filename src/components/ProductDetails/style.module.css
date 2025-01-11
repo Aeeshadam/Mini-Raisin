@@ -1,4 +1,4 @@
-.productDetails div {
+.DetailItem {
   display: flex;
   justify-content: space-between;
   align-items: center;

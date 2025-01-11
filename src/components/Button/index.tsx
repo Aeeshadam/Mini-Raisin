@@ -18,9 +18,24 @@ const Button: React.FC<ButtonProps> = ({
   type = "button",
 }) => {
   const classNames = `${styles.button} ${className ? styles[className] : ""}`;
+
+  const renderIcon = () => {
+    if (className === "googleButton") {
+      return (
+        <img
+          src="/google.png"
+          alt="google logo"
+          className={styles.googleButtonImg}
+        />
+      );
+    }
+    return null;
+  };
+
   if (to) {
     return (
       <NavLink className={classNames} to={to} aria-label="Go to page">
+        {renderIcon()}
         {children}
       </NavLink>
     );
@@ -33,6 +48,7 @@ const Button: React.FC<ButtonProps> = ({
       type={type}
       aria-label="Button"
     >
+      {renderIcon()}
       {children}
     </button>
   );
