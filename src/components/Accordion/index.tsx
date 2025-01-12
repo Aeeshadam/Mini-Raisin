@@ -58,7 +58,13 @@ const Accordion: React.FC<AccordionProps> = ({ productId, isActive }) => {
         )}
       </div>
 
-      {isOpen && <ProductDetails product={product} />}
+      <div
+        className={`${styles.productDetails} ${
+          isOpen ? styles.productDetailsOpen : ""
+        }`}
+      >
+        <ProductDetails product={product} />
+      </div>
     </article>
   );
 };

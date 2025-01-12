@@ -31,6 +31,6 @@
 }
 
 .heroDescription {
-  color: white;
+  color: var(--white-color);
   margin-bottom: var(--spacing-2);
 }

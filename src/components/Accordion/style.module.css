@@ -44,3 +44,17 @@
   margin-top: 24px;
   border-top: 1px solid var(--light-grey);
 }
+
+.productDetails {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.productDetailsOpen {
+  max-height: 400px;
+  opacity: 1;
+  transform: translateY(0);
+}
