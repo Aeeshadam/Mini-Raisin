@@ -1,4 +1,4 @@
-import { DashboardProduct } from "../types";
+import { DashboardProduct } from "../types/types";
 
 const ACTIVE_DEPOSITS_KEY = "activeDeposits";
 const CLOSED_DEPOSITS_KEY = "closedDeposits";

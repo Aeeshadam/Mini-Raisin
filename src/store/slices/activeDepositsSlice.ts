@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { DashboardProduct } from "../../types";
+import { DashboardProduct } from "../../types/types";
 
 interface ActiveDepositsState {
   activeDeposits: DashboardProduct[];

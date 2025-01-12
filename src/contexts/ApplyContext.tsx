@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { DashboardProduct, Product } from "../types";
+import { DashboardProduct, Product } from "../types/types";
 import { setActiveDeposits } from "../store/slices/activeDepositsSlice";
 import { formatNumber } from "../utils/utils";
 import { useNotification } from "./NotificationContext";

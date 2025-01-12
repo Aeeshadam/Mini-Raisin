@@ -1,59 +1,88 @@
 import React from "react";
-import { Product, DashboardProduct } from "../../types";
-import styles from "./style.module.css";
 import {
   formatCurrency,
   formatPercentage,
   calculateInterestEarned,
 } from "../../utils/utils";
 import DetailItem from "./DetailItem";
+import { Product, DashboardProduct } from "../../types/types";
+import {
+  isDashboardProduct,
+  isProductWithStartDate,
+  isClosedProduct,
+} from "../../types/typeGuards";
 
 interface ProductDetailsProps {
   product: Product | DashboardProduct;
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
-  const interest: number | undefined =
-    "interestEarned" in product
-      ? product.interestEarned
-      : "startDate" in product && typeof product.balance === "number"
-      ? calculateInterestEarned(
-          product.balance,
-          product.interestRate,
-          product.startDate
-        )
-      : undefined;
+  const isDashboard = isDashboardProduct(product);
+  const hasStartDate = isProductWithStartDate(product);
+  const isClosed = isClosedProduct(product);
+
+  const interest = (() => {
+    if (isClosed) return product.interestEarned;
+    if (isDashboard && hasStartDate) {
+      return calculateInterestEarned(
+        product.balance,
+        product.interestRate,
+        product.startDate
+      );
+    }
+    return undefined;
+  })();
+
+  const details = [
+    {
+      label: "Term",
+      value: product.term,
+    },
+    {
+      label: "Interest Rate",
+      value: product.interestRate,
+      formatter: formatPercentage,
+    },
+    {
+      label: "Minimum Deposit",
+      value: product.minimumDeposit,
+      formatter: formatCurrency,
+    },
+    {
+      label: "Maximum Deposit",
+      value: product.maximumDeposit,
+      formatter: formatCurrency,
+    },
+    {
+      label: "Balance",
+      value: isDashboard ? product.balance : undefined,
+      formatter: formatCurrency,
+    },
+    {
+      label: "Interest Earned",
+      value: interest,
+      formatter: formatCurrency,
+    },
+    {
+      label: "Start Date",
+      value: hasStartDate ? product.startDate : undefined,
+    },
+    {
+      label: "Closed Date",
+      value: isClosed ? product.closedDate : undefined,
+    },
+  ];
 
   return (
-    <div className={styles.productDetails}>
-      <DetailItem label="Term" value={product.term} />
-
-      <DetailItem
-        label="Interest Rate"
-        value={formatPercentage(product.interestRate)}
-      />
-
-      <DetailItem
-        label="Minimum Deposit"
-        value={formatCurrency(product.minimumDeposit)}
-      />
-
-      <DetailItem
-        label="Maximum Deposit"
-        value={formatCurrency(product.maximumDeposit)}
-      />
-
-      {"balance" in product && (
-        <DetailItem label="Balance" value={formatCurrency(product.balance)} />
-      )}
-      {interest !== undefined && (
-        <DetailItem label="Interest Earned" value={formatCurrency(interest)} />
-      )}
-      {"startDate" in product && (
-        <DetailItem label="Start Date" value={product.startDate} />
-      )}
-      {"closedDate" in product && (
-        <DetailItem label="Closed Date" value={product.closedDate} />
+    <div>
+      {details.map(({ label, value, formatter }) =>
+        value !== undefined ? (
+          <DetailItem
+            key={label}
+            label={label}
+            value={formatter ? formatter(value) : value}
+          />
+        ) : null
       )}
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { DashboardProduct } from "../../types";
+import { DashboardProduct } from "../../types/types";
 import Button from "../Button";
 import styles from "./style.module.css";
 import { formatCurrency } from "../../utils/utils";

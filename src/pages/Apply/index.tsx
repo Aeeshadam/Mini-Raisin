@@ -4,7 +4,7 @@ import products from "../../data/products.json";
 import ProductDetails from "../../components/ProductDetails";
 import { ApplyFormProvider } from "../../contexts/ApplyContext";
 import ApplyForm from "./ApplyForm";
-import { Product } from "../../types";
+import { Product } from "../../types/types";
 import styles from "./style.module.css";
 
 const typedProducts: Product[] = products;

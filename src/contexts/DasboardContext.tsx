@@ -6,7 +6,7 @@ import React, {
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { DashboardProduct } from "../types";
+import { DashboardProduct } from "../types/types";
 import { setClosedDeposits } from "../store/slices/closedDepositsSlice";
 import { removeActiveDeposit } from "../store/slices/activeDepositsSlice";
 import { useNotification } from "./NotificationContext";
