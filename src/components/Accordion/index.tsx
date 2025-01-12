@@ -4,7 +4,7 @@ import { RootState } from "../../store/store";
 import { DashboardProduct } from "../../types/types";
 import Button from "../Button";
 import styles from "./style.module.css";
-import { formatCurrency } from "../../utils/utils";
+import { formatCurrency } from "../../utils";
 import ProductDetails from "../ProductDetails";
 import { useDashboard } from "../../contexts/DasboardContext";
 

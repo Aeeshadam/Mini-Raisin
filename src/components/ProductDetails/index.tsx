@@ -3,7 +3,7 @@ import {
   formatCurrency,
   formatPercentage,
   calculateInterestEarned,
-} from "../../utils/utils";
+} from "../../utils";
 import DetailItem from "./DetailItem";
 import { Product, DashboardProduct } from "../../types/types";
 import {

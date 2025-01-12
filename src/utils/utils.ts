@@ -33,3 +33,15 @@ export const calculateInterestEarned = (
   );
   return amount * dailyRate * days;
 };
+
+export const validateDepositAmount = (
+  amount: number,
+  min: number,
+  max: number
+): boolean => {
+  return amount >= min && amount <= max;
+};
+
+export const parseCurrency = (value: string): number => {
+  return parseFloat(value.replace(/,/g, ""));
+};

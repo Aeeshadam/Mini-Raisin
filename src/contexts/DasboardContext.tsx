@@ -10,8 +10,7 @@ import { DashboardProduct } from "../types/types";
 import { setClosedDeposits } from "../store/slices/closedDepositsSlice";
 import { removeActiveDeposit } from "../store/slices/activeDepositsSlice";
 import { useNotification } from "./NotificationContext";
-import { saveDeposit, removeDeposit } from "../utils/localStorageUtils";
-import { calculateInterestEarned } from "../utils/utils";
+import { updateDepositInLocalStorage, createClosedDeposit } from "../utils";
 
 interface DashboardContextProps {
   handleCloseDeposit: (product: DashboardProduct) => void;
@@ -43,19 +42,12 @@ export const DashboardProvider: React.FC<DashboardProviderProps> = ({
     (product: DashboardProduct) => {
       if (!product) return;
 
-      const newDeposit: DashboardProduct = {
-        ...product,
-        closedDate: new Date().toISOString().split("T")[0],
-        interestEarned: calculateInterestEarned(
-          product.balance,
-          product.interestRate,
-          product.startDate
-        ),
-      };
+      const newDeposit = createClosedDeposit(product);
+
       dispatch(setClosedDeposits([newDeposit]));
       dispatch(removeActiveDeposit(product.id));
-      saveDeposit("closed", newDeposit);
-      removeDeposit("active", product.id);
+
+      updateDepositInLocalStorage(newDeposit, product.id);
       showNotification("Deposit closed successfully", "success");
     },
     [dispatch, showNotification]

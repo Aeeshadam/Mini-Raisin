@@ -6,7 +6,7 @@ import { Product } from "../../../types/types";
 import products from "../../../data/products.json";
 import styles from "./style.module.css";
 import Button from "../../../components/Button";
-import { formatCurrency, formatPercentage } from "../../../utils/utils";
+import { formatCurrency, formatPercentage } from "../../../utils";
 
 const OfferTable = () => {
   const { showNotification } = useNotification();

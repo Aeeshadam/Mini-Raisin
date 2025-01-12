@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+} from "react";
 import {
   signInWithPopup,
   signOut,
@@ -17,7 +23,7 @@ import {
   resetClosedDeposits,
 } from "../store/slices/closedDepositsSlice";
 import { useNotification } from "./NotificationContext";
-import { loadDeposits } from "../utils/localStorageUtils";
+import { loadDeposits } from "../utils";
 
 interface AuthContextProps {
   authLoading: boolean;
@@ -36,20 +42,29 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const { showNotification } = useNotification();
   const dispatch = useDispatch();
 
+  const loadUserDeposits = useCallback(() => {
+    const activeDeposits = loadDeposits("active");
+    const closedDeposits = loadDeposits("closed");
+    dispatch(setActiveDeposits(activeDeposits));
+    dispatch(setClosedDeposits(closedDeposits));
+  }, [dispatch]);
+
+  const resetUserDeposits = useCallback(() => {
+    dispatch(resetActiveDeposits());
+    dispatch(resetClosedDeposits());
+  }, [dispatch]);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
         dispatch(setLoading(true));
-        const activeDeposits = loadDeposits("active");
-        const closedDeposits = loadDeposits("closed");
-        dispatch(setActiveDeposits(activeDeposits));
-        dispatch(setClosedDeposits(closedDeposits));
+        loadUserDeposits();
       }
       setAuthLoading(false);
     });
     return () => unsubscribe();
-  }, [dispatch]);
+  }, [dispatch, loadUserDeposits]);
 
   const signInWithGoogle = async () => {
     try {
@@ -64,8 +79,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const signOutUser = async () => {
     try {
       await signOut(auth);
-      dispatch(resetActiveDeposits());
-      dispatch(resetClosedDeposits());
+      resetUserDeposits();
       showNotification("Logged out", "info");
     } catch (error) {
       console.error("Error signing out", error);

@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { formatCurrency } from "../../utils/utils";
+import { formatCurrency } from "../../utils";
 import ActiveDeposits from "./ActiveDeposits";
 import CloseDeposits from "./ClosedDeposits";
 import styles from "./style.module.css";

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import LogInButton from "./LogInButton";
-import { getInitials } from "../../utils/utils";
+import { getInitials } from "../../utils";
 import styles from "./style.module.css";
 
 const Navbar = () => {

@@ -43,3 +43,11 @@ export const removeDeposit = (type: "active" | "closed", depositId: string) => {
     console.error("Error removing deposit from localStorage", error);
   }
 };
+
+export const updateDepositInLocalStorage = (
+  newDeposit: DashboardProduct,
+  productId: string
+) => {
+  saveDeposit("closed", newDeposit);
+  removeDeposit("active", productId);
+};

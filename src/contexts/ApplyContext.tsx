@@ -7,11 +7,16 @@ import React, {
 } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { DashboardProduct, Product } from "../types/types";
+import { Product } from "../types/types";
 import { setActiveDeposits } from "../store/slices/activeDepositsSlice";
-import { formatNumber } from "../utils/utils";
 import { useNotification } from "./NotificationContext";
-import { saveDeposit } from "../utils/localStorageUtils";
+import {
+  saveDeposit,
+  createNewDeposit,
+  formatNumber,
+  validateDepositAmount,
+  parseCurrency,
+} from "../utils";
 
 interface ApplyFormContextProps {
   depositAmount: string;
@@ -45,10 +50,11 @@ export const ApplyFormProvider: React.FC<ApplyFormProviderProps> = ({
   const isValidAmount = useCallback(
     (value: string) => {
       if (!product) return false;
-      const numericValue = parseFloat(value.replace(/,/g, ""));
-      return (
-        numericValue >= product.minimumDeposit &&
-        numericValue <= product.maximumDeposit
+      const numericValue = parseCurrency(value);
+      return validateDepositAmount(
+        numericValue,
+        product.minimumDeposit,
+        product.maximumDeposit
       );
     },
     [product]
@@ -66,15 +72,8 @@ export const ApplyFormProvider: React.FC<ApplyFormProviderProps> = ({
       }
       if (!product) return;
 
-      const numericValue = parseFloat(depositAmount.replace(/,/g, ""));
-      const startDate = new Date().toISOString().split("T")[0];
-
-      const newDeposit: DashboardProduct = {
-        ...product,
-        id: `${product.id}-${Date.now()}`,
-        balance: numericValue,
-        startDate,
-      };
+      const numericValue = parseCurrency(depositAmount);
+      const newDeposit = createNewDeposit(product, numericValue);
 
       dispatch(setActiveDeposits([newDeposit]));
       saveDeposit("active", newDeposit);
