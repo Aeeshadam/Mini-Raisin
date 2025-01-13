@@ -31,7 +31,7 @@
 }
 
 .footerLi {
-  margin: 0.5rem 0;
+  margin: var(--spacing-small) 0;
 }
 
 .footerLinksAnchor {

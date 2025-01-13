@@ -8,9 +8,12 @@ const ApplyForm: FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.applyForm}>
-      <label htmlFor="depositAmount">Enter Deposit Amount:</label>
+      <label className={styles.applyLabel} htmlFor="depositAmount">
+        Enter Deposit Amount:
+      </label>
       <input
         type="text"
+        className={styles.applyFormInput}
         name="depositAmount"
         required
         value={depositAmount}

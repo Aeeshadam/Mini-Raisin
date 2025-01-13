@@ -1,4 +1,9 @@
 :root {
+  --icon-small: 24px;
+  --icon-size: 50px;
   --hero-height: 400px;
   --navbar-height: 61px;
+  --logo-width: 120px;
+  --form-max-width: 500px;
+  --page-max-width: 800px;
 }

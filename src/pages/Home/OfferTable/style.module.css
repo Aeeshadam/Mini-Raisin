@@ -6,12 +6,12 @@
 
 .offerTable th,
 .offerTable td {
-  padding: 24px;
+  padding: var(--spacing-2);
   text-align: left;
 }
 
 .offerTable tr {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
   transition: box-shadow 0.3s ease;
 }
 
@@ -24,13 +24,13 @@
 }
 
 .logo {
-  width: 50px;
+  width: var(--icon-size);
   height: auto;
 }
 
 .interest {
   color: var(--primary-color);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
 }
 
 @media (max-width: 991px) {
@@ -48,26 +48,26 @@
 
   .offerTable td {
     text-align: right;
-    padding: 12px;
+    padding: var(--spacing-1);
     border-bottom: 1px solid #ddd;
     position: relative;
   }
 
   .logo {
-    width: 30px;
+    width: var(--icon-small);
     height: auto;
   }
   .offerTable td::before {
     content: attr(data-label);
     position: absolute;
-    left: 12px;
+    left: var(--spacing-1);
     font-weight: bold;
     text-align: left;
   }
 
   .offerTable tr {
-    margin-bottom: 3rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: var(--spacing-3);
+    box-shadow: var(--shadow);
   }
 
   .logoContainer {

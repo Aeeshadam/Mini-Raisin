@@ -23,7 +23,11 @@ const Apply = () => {
     <main className={styles.apply}>
       <h2>Your savings account choice</h2>
       <div className={styles.logoAndNameContainer}>
-        <img src={product.logo} alt={`${product.name} logo`} />
+        <img
+          className={styles.productLogo}
+          src={product.logo}
+          alt={`${product.name} logo`}
+        />
         <h4>{product.name}</h4>
       </div>
       <ProductDetails product={product} />

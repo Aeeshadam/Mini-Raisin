@@ -2,7 +2,7 @@
   width: 100%;
   margin: var(--spacing-3) auto;
   padding: 0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
   padding: var(--spacing-1);
 }
 
@@ -20,13 +20,13 @@
 }
 
 .accordionLogo {
-  width: 50px;
+  width: var(--icon-size);
   height: auto;
 }
 
 .balance {
   color: var(--primary-color);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
 }
 
 .logoAndNameContainer {
@@ -41,7 +41,7 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-1) 0;
-  margin-top: 24px;
+  margin-top: var(--spacing-2);
   border-top: 1px solid var(--light-grey);
 }
 
@@ -54,7 +54,7 @@
 }
 
 .productDetailsOpen {
-  max-height: 400px;
+  max-height: none;
   opacity: 1;
   transform: translateY(0);
 }

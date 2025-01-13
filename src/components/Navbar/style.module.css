@@ -45,7 +45,7 @@
 }
 
 .logoImg {
-  width: 12rem;
+  width: var(--logo-width);
   height: auto;
 }
 
@@ -67,9 +67,9 @@
 
   .menuButton {
     display: block;
-    padding: 6px;
+    padding: var(--spacing-small);
     border: none;
-    border-radius: 5px;
+    border-radius: var(--spacing-small);
     cursor: pointer;
     background-color: var(--light-grey);
   }

@@ -6,4 +6,6 @@
   --font-size-h5: clamp(1.2rem, 2.5vw, 1.6rem);
   --font-size-p: 1.4rem;
   --font-size-small: 1.3rem;
+  --font-weight-bold: 700;
+  --font-weight-medium: 500;
 }
