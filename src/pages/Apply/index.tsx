@@ -6,14 +6,12 @@ import products from "../../data/products.json";
 import { Product } from "../../types/types";
 import styles from "./style.module.css";
 
-const typedProducts: Product[] = products;
-
 const Apply = () => {
   const { productId } = useParams<{ productId: string }>();
 
-  const product = typedProducts.find(
+  const product = products.find(
     (product: Product) => product.id === productId
-  );
+  ) as Product | undefined;
 
   if (!product) {
     return <h2>Product not found</h2>;
