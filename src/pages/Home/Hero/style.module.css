@@ -1,5 +1,5 @@
 .heroContainer {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--spacing-3);
   width: 100vw;
   height: var(--hero-height);
   background-image: url("/public/hero.jpg");

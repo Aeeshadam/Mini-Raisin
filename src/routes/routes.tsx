@@ -1,4 +1,4 @@
-import React from "react";
+import { ReactNode } from "react";
 import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
 import Apply from "../pages/Apply";
@@ -7,7 +7,7 @@ import NotFound from "../components/NotFound";
 
 interface Route {
   path: string;
-  component: React.ReactNode;
+  component: ReactNode;
 }
 const routes: Route[] = [
   { path: "/", component: <Home /> },

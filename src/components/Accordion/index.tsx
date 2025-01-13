@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, FC } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { DashboardProduct } from "../../types/types";
@@ -13,7 +13,7 @@ interface AccordionProps {
   isActive: boolean;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ productId, isActive }) => {
+const Accordion: FC<AccordionProps> = ({ productId, isActive }) => {
   const product = useSelector((state: RootState) =>
     isActive
       ? state.activeDeposits.activeDeposits.find((p) => p.id === productId)

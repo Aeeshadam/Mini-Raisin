@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, FC } from "react";
 
 interface NotificationContextProps {
   message: string | null;
@@ -11,7 +11,7 @@ const NotificationContext = createContext<NotificationContextProps | undefined>(
   undefined
 );
 
-export const NotificationProvider: React.FC<{ children: ReactNode }> = ({
+export const NotificationProvider: FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [message, setMessage] = useState<string | null>(null);

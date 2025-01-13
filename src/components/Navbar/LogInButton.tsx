@@ -1,9 +1,9 @@
-import React from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import Button from "../Button";
 
-const LogInButton: React.FC = () => {
+const LogInButton: FC = () => {
   const { user, signInWithGoogle, signOutUser } = useAuth();
   const navigate = useNavigate();
 

@@ -1,7 +1,6 @@
-import React from "react";
+import { useAuth } from "../../../contexts/AuthContext";
 import Button from "../../../components/Button";
 import styles from "./style.module.css";
-import { useAuth } from "../../../contexts/AuthContext";
 
 const Hero = () => {
   const { user, signInWithGoogle } = useAuth();

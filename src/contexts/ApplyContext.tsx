@@ -1,9 +1,10 @@
-import React, {
+import {
   createContext,
   useContext,
   useState,
   useCallback,
   ReactNode,
+  FC,
 } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -33,7 +34,7 @@ interface ApplyFormProviderProps {
   product: Product | undefined;
 }
 
-export const ApplyFormProvider: React.FC<ApplyFormProviderProps> = ({
+export const ApplyFormProvider: FC<ApplyFormProviderProps> = ({
   children,
   product,
 }) => {

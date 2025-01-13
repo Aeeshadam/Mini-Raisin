@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode, FC } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./style.module.css";
 
@@ -10,7 +10,7 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset";
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button: FC<ButtonProps> = ({
   children,
   to,
   onClick,

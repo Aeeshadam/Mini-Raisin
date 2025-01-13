@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  ReactNode,
-  useCallback,
-} from "react";
+import { createContext, useContext, ReactNode, useCallback, FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { DashboardProduct } from "../types/types";
@@ -26,9 +21,7 @@ interface DashboardProviderProps {
   children: ReactNode;
 }
 
-export const DashboardProvider: React.FC<DashboardProviderProps> = ({
-  children,
-}) => {
+export const DashboardProvider: FC<DashboardProviderProps> = ({ children }) => {
   const dispatch = useDispatch();
   const { showNotification } = useNotification();
   const activeDeposits = useSelector(

@@ -1,10 +1,10 @@
-import React from "react";
+import { FC } from "react";
+import DetailItem from "./DetailItem";
 import {
   formatCurrency,
   formatPercentage,
   calculateInterestEarned,
 } from "../../utils";
-import DetailItem from "./DetailItem";
 import { Product, DashboardProduct } from "../../types/types";
 import {
   isDashboardProduct,
@@ -16,7 +16,7 @@ interface ProductDetailsProps {
   product: Product | DashboardProduct;
 }
 
-const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
+const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
   const isDashboard = isDashboardProduct(product);
   const hasStartDate = isProductWithStartDate(product);
   const isClosed = isClosedProduct(product);

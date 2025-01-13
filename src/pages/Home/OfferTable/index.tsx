@@ -1,12 +1,11 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useNotification } from "../../../contexts/NotificationContext";
 import { useAuth } from "../../../contexts/AuthContext";
-import { Product } from "../../../types/types";
-import products from "../../../data/products.json";
-import styles from "./style.module.css";
 import Button from "../../../components/Button";
 import { formatCurrency, formatPercentage } from "../../../utils";
+import products from "../../../data/products.json";
+import { Product } from "../../../types/types";
+import styles from "./style.module.css";
 
 const OfferTable = () => {
   const { showNotification } = useNotification();

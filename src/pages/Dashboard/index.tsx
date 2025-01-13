@@ -1,11 +1,11 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
+import { DashboardProvider } from "../../contexts/DasboardContext";
 import { RootState } from "../../store/store";
-import { formatCurrency } from "../../utils";
 import ActiveDeposits from "./ActiveDeposits";
 import CloseDeposits from "./ClosedDeposits";
+import { formatCurrency } from "../../utils";
 import styles from "./style.module.css";
-import { DashboardProvider } from "../../contexts/DasboardContext";
 
 const Dashboard = () => {
   const activeProducts = useSelector(

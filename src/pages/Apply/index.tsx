@@ -1,9 +1,8 @@
-import React from "react";
 import { useParams } from "react-router-dom";
-import products from "../../data/products.json";
-import ProductDetails from "../../components/ProductDetails";
 import { ApplyFormProvider } from "../../contexts/ApplyContext";
+import ProductDetails from "../../components/ProductDetails";
 import ApplyForm from "./ApplyForm";
+import products from "../../data/products.json";
 import { Product } from "../../types/types";
 import styles from "./style.module.css";
 

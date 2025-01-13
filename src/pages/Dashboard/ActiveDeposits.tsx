@@ -1,4 +1,3 @@
-import React from "react";
 import { useDashboard } from "../../contexts/DasboardContext";
 import Accordion from "../../components/Accordion";
 import styles from "./style.module.css";
