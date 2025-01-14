@@ -1,0 +1,20 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin-bottom: var(--spacing-3);
+}
+
+.sectionHeading {
+  margin: var(--spacing-2) 0;
+}
+
+.totalBalance {
+  margin-bottom: var(--spacing-3);
+  color: var(--primary-color);
+}
+
+.sectionContainer {
+  margin-bottom: var(--spacing-1);
+}

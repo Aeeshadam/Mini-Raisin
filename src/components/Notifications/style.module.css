@@ -1,0 +1,32 @@
+.notification {
+  position: fixed;
+  top: var(--spacing-2);
+  right: var(--spacing-2);
+  padding: var(--spacing-1);
+  border-radius: var(--spacing-small);
+  z-index: 1000;
+  color: var(--white-color);
+}
+
+.notification.success {
+  background-color: var(--success-color);
+}
+
+.notification.error {
+  background-color: var(--error-color);
+}
+
+.notification.info {
+  background-color: var(--primary-color);
+}
+
+.notificationButton {
+  background: none;
+  border: 1px solid var(--white-color);
+  border-radius: var(--spacing-small);
+  color: var(--white-color);
+  font-weight: bold;
+  cursor: pointer;
+  padding: var(--spacing-small) var(--spacing-1);
+  margin-top: var(--spacing-1);
+}

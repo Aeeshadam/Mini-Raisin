@@ -1,0 +1,81 @@
+.offerTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--spacing-10);
+}
+
+.offerTable th,
+.offerTable td {
+  padding: var(--spacing-2);
+  text-align: left;
+}
+
+.offerTable tr {
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.3s ease;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: var(--spacing-1);
+  margin-bottom: var(--spacing-1);
+}
+
+.logo {
+  width: var(--icon-size);
+  height: auto;
+}
+
+.interest {
+  color: var(--primary-color);
+  font-weight: var(--font-weight-bold);
+}
+
+@media (max-width: 991px) {
+  .offerTable th {
+    display: none;
+  }
+
+  .offerTable,
+  .offerTable tbody,
+  .offerTable tr,
+  .offerTable td {
+    display: block;
+    width: 100%;
+  }
+
+  .offerTable td {
+    text-align: right;
+    padding: var(--spacing-1);
+    border-bottom: 1px solid #ddd;
+    position: relative;
+  }
+
+  .logo {
+    width: var(--icon-small);
+    height: auto;
+  }
+  .offerTable td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: var(--spacing-1);
+    font-weight: bold;
+    text-align: left;
+  }
+
+  .offerTable tr {
+    margin-bottom: var(--spacing-3);
+    box-shadow: var(--shadow);
+  }
+
+  .logoContainer {
+    justify-content: end;
+  }
+}
+
+.offerTableHeading {
+  text-align: center;
+  margin: var(--spacing-3) 0;
+}
