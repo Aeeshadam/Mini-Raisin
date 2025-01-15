@@ -1,5 +1,5 @@
 import { FC } from "react";
-import DetailItem from "./DetailItem";
+import DetailItem from "../DetailItem";
 import {
   formatCurrency,
   formatPercentage,
@@ -74,7 +74,7 @@ const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
   ];
 
   return (
-    <div>
+    <div data-testid="productDetails">
       {details.map(({ label, value, formatter }) =>
         value !== undefined ? (
           <DetailItem

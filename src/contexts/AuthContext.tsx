@@ -26,7 +26,7 @@ import {
 import { useNotification } from "./NotificationContext";
 import { loadDeposits } from "../utils";
 
-interface AuthContextProps {
+export interface AuthContextProps {
   authLoading: boolean;
   user: User | null;
   signInWithGoogle: () => Promise<void>;
@@ -64,6 +64,7 @@ export const AuthProvider: FC<{ children: React.ReactNode }> = ({
       }
       setAuthLoading(false);
     });
+
     return () => unsubscribe();
   }, [dispatch, loadUserDeposits]);
 

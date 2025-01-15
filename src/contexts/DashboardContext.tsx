@@ -7,7 +7,7 @@ import { removeActiveDeposit } from "../store/slices/activeDepositsSlice";
 import { useNotification } from "./NotificationContext";
 import { updateDepositInLocalStorage, createClosedDeposit } from "../utils";
 
-interface DashboardContextProps {
+export interface DashboardContextProps {
   handleCloseDeposit: (product: DashboardProduct) => void;
   closedDeposits: DashboardProduct[];
   activeDeposits: DashboardProduct[];

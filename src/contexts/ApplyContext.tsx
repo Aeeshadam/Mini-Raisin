@@ -62,7 +62,7 @@ export const ApplyFormProvider: FC<ApplyFormProviderProps> = ({
   );
 
   const handleSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
+    (e: React.FormEvent) => {
       e.preventDefault();
       if (!isValidAmount(depositAmount)) {
         showNotification(
