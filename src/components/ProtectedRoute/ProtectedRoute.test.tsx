@@ -1,9 +1,7 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
-import { Routes, Route } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./index";
-import CustomMemoryRouter from "../../components/CustomMemoryRouter";
+import { useAuth } from "../../contexts/AuthContext";
 
 jest.mock("../../contexts/AuthContext", () => ({
   useAuth: jest.fn(),
@@ -12,53 +10,64 @@ jest.mock("../../contexts/AuthContext", () => ({
 const mockUseAuth = useAuth as jest.Mock;
 
 describe("ProtectedRoute", () => {
-  beforeEach(() => {
+  it("redirects to / if user is not authenticated", () => {
     mockUseAuth.mockReturnValue({ user: null, authLoading: false });
-  });
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-  it("renders loading when authLoading is true", () => {
-    mockUseAuth.mockReturnValue({ user: null, authLoading: true });
-    render(
-      <CustomMemoryRouter initialEntries={["/dashboard"]}>
-        <Routes>
-          <Route element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<div>Dashboard</div>} />
-          </Route>
-        </Routes>
-      </CustomMemoryRouter>
-    );
-    expect(screen.getByText("Loading...")).toBeInTheDocument();
-  });
 
-  it("navigates to home when user is not authenticated", () => {
     render(
-      <CustomMemoryRouter initialEntries={["/dashboard"]}>
+      <MemoryRouter initialEntries={["/protected"]}>
         <Routes>
+          <Route
+            path="/protected"
+            element={
+              <ProtectedRoute>
+                <div>Protected Content</div>
+              </ProtectedRoute>
+            }
+          />
           <Route path="/" element={<div>Home</div>} />
-          <Route element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<div>Dashboard</div>} />
-          </Route>
         </Routes>
-      </CustomMemoryRouter>
+      </MemoryRouter>
     );
-    expect(screen.queryByText("Dashboard")).not.toBeInTheDocument();
-    expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
+
     expect(screen.getByText("Home")).toBeInTheDocument();
+    expect(screen.queryByText("Protected Content")).not.toBeInTheDocument();
   });
 
-  it("renders the protected route when user is authenticated", () => {
-    mockUseAuth.mockReturnValue({ user: { uid: "123" }, authLoading: false });
+  it("renders children if user is authenticated", () => {
+    mockUseAuth.mockReturnValue({
+      user: { id: 1, name: "Test User" },
+      authLoading: false,
+    });
+
     render(
-      <CustomMemoryRouter initialEntries={["/dashboard"]}>
+      <MemoryRouter initialEntries={["/protected"]}>
         <Routes>
-          <Route element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<div>Dashboard</div>} />
-          </Route>
+          <Route
+            path="/protected"
+            element={
+              <ProtectedRoute>
+                <div>Protected Content</div>
+              </ProtectedRoute>
+            }
+          />
         </Routes>
-      </CustomMemoryRouter>
+      </MemoryRouter>
     );
-    expect(screen.getByText("Dashboard")).toBeInTheDocument();
+
+    expect(screen.getByText("Protected Content")).toBeInTheDocument();
+  });
+
+  it("displays loading indicator when authLoading is true", () => {
+    mockUseAuth.mockReturnValue({ user: null, authLoading: true });
+
+    render(
+      <MemoryRouter>
+        <ProtectedRoute>
+          <div>Protected Content</div>
+        </ProtectedRoute>
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText("Loading...")).toBeInTheDocument();
   });
 });

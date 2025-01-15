@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import ApplyForm from "./index";
 import { useApplyForm } from "../../../contexts/ApplyContext";
@@ -56,9 +55,7 @@ describe("ApplyForm component", () => {
     });
     render(<ApplyForm />);
 
-    fireEvent.click(
-      screen.getByRole("button", { name: /Submit Application/i })
-    );
+    fireEvent.submit(screen.getByTestId("apply-form"));
 
     expect(handleSubmitMock).toHaveBeenCalled();
   });

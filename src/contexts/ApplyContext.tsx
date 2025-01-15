@@ -61,31 +61,35 @@ export const ApplyFormProvider: FC<ApplyFormProviderProps> = ({
     [product]
   );
 
-  const handleSubmit = useCallback(() => {
-    if (!isValidAmount(depositAmount)) {
-      showNotification(
-        "Deposit amount must be within the min and max deposit limits",
-        "error"
-      );
-      return;
-    }
-    if (!product) return;
+  const handleSubmit = useCallback(
+    (e: React.FormEvent) => {
+      e.preventDefault();
+      if (!isValidAmount(depositAmount)) {
+        showNotification(
+          "Deposit amount must be within the min and max deposit limits",
+          "error"
+        );
+        return;
+      }
+      if (!product) return;
 
-    const numericValue = parseCurrency(depositAmount);
-    const newDeposit = createNewDeposit(product, numericValue);
+      const numericValue = parseCurrency(depositAmount);
+      const newDeposit = createNewDeposit(product, numericValue);
 
-    dispatch(setActiveDeposits([newDeposit]));
-    saveDeposit("active", newDeposit);
-    navigate("/dashboard");
-    showNotification("Deposit opened successfully", "success");
-  }, [
-    depositAmount,
-    product,
-    showNotification,
-    dispatch,
-    navigate,
-    isValidAmount,
-  ]);
+      dispatch(setActiveDeposits([newDeposit]));
+      saveDeposit("active", newDeposit);
+      navigate("/dashboard");
+      showNotification("Deposit opened successfully", "success");
+    },
+    [
+      depositAmount,
+      product,
+      showNotification,
+      dispatch,
+      navigate,
+      isValidAmount,
+    ]
+  );
 
   return (
     <ApplyFormContext.Provider

@@ -1,8 +1,7 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import ProductDetails from "./index";
 import { calculateInterestEarned } from "../../utils/utils";
-import { Product, DashboardProduct } from "../../types";
+import { Product, DashboardProduct } from "../../types/types";
 
 const product: Product = {
   id: "1",

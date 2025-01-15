@@ -1,8 +1,7 @@
-import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import Accordion from "./index";
 import { useSelector } from "react-redux";
-import { DashboardProduct } from "../../types";
+import { DashboardProduct } from "../../types/types";
 import { useDashboard } from "../../contexts/DashboardContext";
 import { RootState } from "../../store/store";
 
@@ -67,13 +66,15 @@ describe("Accordion", () => {
   it("renders Accordion with active deposits", () => {
     render(<Accordion productId="1" isActive={true} />);
     expect(screen.getByText(/Test Product/i)).toBeInTheDocument();
-    expect(screen.getByText("£5,000.00")).toBeInTheDocument();
+    const balanceElement = screen.getByText("£5,000.00", { selector: "h3" });
+    expect(balanceElement).toBeInTheDocument();
   });
 
   it("renders Accordion with closed deposits", () => {
     render(<Accordion productId="2" isActive={false} />);
     expect(screen.getByText(/Test Product closed/i)).toBeInTheDocument();
-    expect(screen.getByText("£1,000.00")).toBeInTheDocument();
+    const balanceElement = screen.getByText("£1,000.00", { selector: "h3" });
+    expect(balanceElement).toBeInTheDocument();
   });
 
   it("toggle accordion on click details button", () => {

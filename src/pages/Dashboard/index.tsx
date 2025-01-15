@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
-import { DashboardProvider } from "../../contexts/DasboardContext";
+import { DashboardProvider } from "../../contexts/DashboardContext";
 import { RootState } from "../../store/store";
 import ActiveDeposits from "./ActiveDeposits";
 import CloseDeposits from "./ClosedDeposits";

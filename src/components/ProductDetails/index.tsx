@@ -74,7 +74,7 @@ const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
   ];
 
   return (
-    <div>
+    <div data-testid="productDetails">
       {details.map(({ label, value, formatter }) =>
         value !== undefined ? (
           <DetailItem

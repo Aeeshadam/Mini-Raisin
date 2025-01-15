@@ -3,7 +3,7 @@ import { ApplyFormProvider } from "../../contexts/ApplyContext";
 import ProductDetails from "../../components/ProductDetails";
 import ApplyForm from "./ApplyForm";
 import products from "../../data/products.json";
-import { Product } from "../../types";
+import { Product } from "../../types/types";
 import styles from "./style.module.css";
 
 const Apply = () => {

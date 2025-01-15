@@ -1,17 +1,11 @@
-import React, {
-  createContext,
-  useContext,
-  ReactNode,
-  useCallback,
-} from "react";
+import { createContext, useContext, ReactNode, useCallback, FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { DashboardProduct } from "../types";
+import { DashboardProduct } from "../types/types";
 import { setClosedDeposits } from "../store/slices/closedDepositsSlice";
 import { removeActiveDeposit } from "../store/slices/activeDepositsSlice";
 import { useNotification } from "./NotificationContext";
-import { saveDeposit, removeDeposit } from "../utils/localStorageUtils";
-import { calculateInterestEarned } from "../utils/utils";
+import { updateDepositInLocalStorage, createClosedDeposit } from "../utils";
 
 export interface DashboardContextProps {
   handleCloseDeposit: (product: DashboardProduct) => void;
@@ -27,9 +21,7 @@ interface DashboardProviderProps {
   children: ReactNode;
 }
 
-export const DashboardProvider: React.FC<DashboardProviderProps> = ({
-  children,
-}) => {
+export const DashboardProvider: FC<DashboardProviderProps> = ({ children }) => {
   const dispatch = useDispatch();
   const { showNotification } = useNotification();
   const activeDeposits = useSelector(
@@ -43,19 +35,12 @@ export const DashboardProvider: React.FC<DashboardProviderProps> = ({
     (product: DashboardProduct) => {
       if (!product) return;
 
-      const newDeposit: DashboardProduct = {
-        ...product,
-        closedDate: new Date().toISOString().split("T")[0],
-        interestEarned: calculateInterestEarned(
-          product.balance,
-          product.interestRate,
-          product.startDate
-        ),
-      };
+      const newDeposit = createClosedDeposit(product);
+
       dispatch(setClosedDeposits([newDeposit]));
       dispatch(removeActiveDeposit(product.id));
-      saveDeposit("closed", newDeposit);
-      removeDeposit("active", product.id);
+
+      updateDepositInLocalStorage(newDeposit, product.id);
       showNotification("Deposit closed successfully", "success");
     },
     [dispatch, showNotification]

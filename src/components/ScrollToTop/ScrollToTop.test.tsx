@@ -1,4 +1,3 @@
-import React from "react";
 import { render } from "@testing-library/react";
 import { Route, Routes } from "react-router-dom";
 import CustomMemoryRouter from "../../components/CustomMemoryRouter";

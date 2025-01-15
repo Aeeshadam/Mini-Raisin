@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import LogInButton from "./LogInButton";
+import LogInButton from "../LoginButton";
 import { getInitials } from "../../utils";
 import styles from "./style.module.css";
 

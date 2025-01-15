@@ -1,13 +1,17 @@
 import { FC } from "react";
 import { useApplyForm } from "../../../contexts/ApplyContext";
 import Button from "../../../components/Button";
-import styles from "./style.module.css";
+import styles from "../style.module.css";
 
 const ApplyForm: FC = () => {
   const { depositAmount, handleInputChange, handleSubmit } = useApplyForm();
 
   return (
-    <form onSubmit={handleSubmit} className={styles.applyForm}>
+    <form
+      data-testid="apply-form"
+      onSubmit={handleSubmit}
+      className={styles.applyForm}
+    >
       <label className={styles.applyLabel} htmlFor="depositAmount">
         Enter Deposit Amount:
       </label>
