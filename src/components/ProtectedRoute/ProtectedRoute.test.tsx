@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import CustomMemoryRouter from "../CustomMemoryRouter";
 import ProtectedRoute from "./index";
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -14,7 +15,7 @@ describe("ProtectedRoute", () => {
     mockUseAuth.mockReturnValue({ user: null, authLoading: false });
 
     render(
-      <MemoryRouter initialEntries={["/protected"]}>
+      <CustomMemoryRouter initialEntries={["/protected"]}>
         <Routes>
           <Route
             path="/protected"
@@ -26,7 +27,7 @@ describe("ProtectedRoute", () => {
           />
           <Route path="/" element={<div>Home</div>} />
         </Routes>
-      </MemoryRouter>
+      </CustomMemoryRouter>
     );
 
     expect(screen.getByText("Home")).toBeInTheDocument();
@@ -40,7 +41,7 @@ describe("ProtectedRoute", () => {
     });
 
     render(
-      <MemoryRouter initialEntries={["/protected"]}>
+      <CustomMemoryRouter initialEntries={["/protected"]}>
         <Routes>
           <Route
             path="/protected"
@@ -51,7 +52,7 @@ describe("ProtectedRoute", () => {
             }
           />
         </Routes>
-      </MemoryRouter>
+      </CustomMemoryRouter>
     );
 
     expect(screen.getByText("Protected Content")).toBeInTheDocument();
@@ -61,11 +62,11 @@ describe("ProtectedRoute", () => {
     mockUseAuth.mockReturnValue({ user: null, authLoading: true });
 
     render(
-      <MemoryRouter>
+      <CustomMemoryRouter>
         <ProtectedRoute>
           <div>Protected Content</div>
         </ProtectedRoute>
-      </MemoryRouter>
+      </CustomMemoryRouter>
     );
 
     expect(screen.getByText("Loading...")).toBeInTheDocument();

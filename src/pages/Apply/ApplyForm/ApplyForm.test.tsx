@@ -23,7 +23,6 @@ describe("ApplyForm component", () => {
 
   it("renders ApplyForm with input and button", () => {
     render(<ApplyForm />);
-
     expect(screen.getByLabelText(/Enter Deposit Amount:/i)).toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: /Submit Application/i })
@@ -31,32 +30,25 @@ describe("ApplyForm component", () => {
   });
 
   it("calls handleInputChange when input value changes", () => {
-    const handleInputChangeMock = jest.fn();
-    mockUseApplyForm.mockReturnValue({
-      depositAmount: "",
-      handleInputChange: handleInputChangeMock,
-      handleSubmit: jest.fn(),
-    });
     render(<ApplyForm />);
 
     fireEvent.change(screen.getByLabelText(/Enter Deposit Amount:/i), {
       target: { value: "2000" },
     });
 
-    expect(handleInputChangeMock).toHaveBeenCalled();
+    expect(mockUseApplyForm().handleInputChange).toHaveBeenCalled();
   });
 
   it("calls handleSubmit when form is submitted", () => {
-    const handleSubmitMock = jest.fn();
     mockUseApplyForm.mockReturnValue({
       depositAmount: "1000",
       handleInputChange: jest.fn(),
-      handleSubmit: handleSubmitMock,
+      handleSubmit: jest.fn(),
     });
     render(<ApplyForm />);
 
     fireEvent.submit(screen.getByTestId("apply-form"));
 
-    expect(handleSubmitMock).toHaveBeenCalled();
+    expect(mockUseApplyForm().handleSubmit).toHaveBeenCalled();
   });
 });

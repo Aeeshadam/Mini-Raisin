@@ -5,7 +5,7 @@ import styles from "../style.module.css";
 const ClosedDeposits = () => {
   const { closedDeposits } = useDashboard();
   return (
-    <section className={styles.sectionContainer}>
+    <section className={styles.sectionContainer} data-testid="closed-deposits">
       <h3 className={styles.sectionHeading}>Closed Deposits</h3>
       {closedDeposits?.map((product) => (
         <Accordion key={product.id} productId={product.id} isActive={false} />

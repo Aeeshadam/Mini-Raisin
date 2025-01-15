@@ -42,7 +42,7 @@ describe("Navbar", () => {
     fireEvent.click(
       screen.getByRole("button", { name: /Log In with Google/i })
     );
-    expect(mockUseAuth).toHaveBeenCalled();
+    expect(mockUseAuth().signInWithGoogle).toHaveBeenCalled();
   });
 
   it("renders  Log Out button when user is logged in", () => {
